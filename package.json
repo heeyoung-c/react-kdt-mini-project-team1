@@ -1,0 +1,38 @@
+{
+  "name": "react-kdt-mini-project-team1",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
+    "@mui/material": "^5.10.1",
+    "@reduxjs/toolkit": "^1.8.5",
+    "bootstrap": "^5.2.0",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.5.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.4.0",
+    "react-redux": "^8.0.2",
+    "react-router-dom": "^6.3.0",
+    "styled-components": "^5.3.5"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.0.1",
+    "autoprefixer": "^10.4.8",
+    "eslint": "^8.22.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "postcss": "^8.4.16",
+    "prettier": "^2.7.1",
+    "redux-logger": "^3.0.6",
+    "vite": "^3.0.7"
+  }
+}
