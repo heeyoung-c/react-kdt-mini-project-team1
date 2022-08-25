@@ -2,7 +2,9 @@ import { ThemeProvider } from 'styled-components';
 import AppRouter from './routes/AppRouter';
 import GlobalStyle from './styles/globalStyle';
 import theme from './styles/theme';
+
 import TheButton from './components/UI/TheButton';
+import TheHeader from './components/layout/TheHeader';
 import TheFooter from './components/layout/TheFooter';
 import Card from './components/UI/Card';
 
@@ -13,6 +15,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
+      <TheHeader />
       <Card></Card>
       <TheButton></TheButton>
       <AppRouter />

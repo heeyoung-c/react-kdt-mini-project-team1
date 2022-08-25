@@ -1,10 +1,10 @@
-import { createGlobalStyle } from 'styled-components'
-import NotoSansBlack from '~/assets/fonts/NotoSansKR-Black.otf'
-import NotoSansBold from '~/assets/fonts/NotoSansKR-Bold.otf'
-import NotoSansLight from '~/assets/fonts/NotoSansKR-Light.otf'
-import NotoSansMedium from '~/assets/fonts/NotoSansKR-Medium.otf'
-import NotoSansRegular from '~/assets/fonts/NotoSansKR-Regular.otf'
-import NotoSansThin from '~/assets/fonts/NotoSansKR-Thin.otf'
+import { createGlobalStyle } from 'styled-components';
+import NotoSansBlack from '~/assets/fonts/NotoSansKR-Black.otf';
+import NotoSansBold from '~/assets/fonts/NotoSansKR-Bold.otf';
+import NotoSansLight from '~/assets/fonts/NotoSansKR-Light.otf';
+import NotoSansMedium from '~/assets/fonts/NotoSansKR-Medium.otf';
+import NotoSansRegular from '~/assets/fonts/NotoSansKR-Regular.otf';
+import NotoSansThin from '~/assets/fonts/NotoSansKR-Thin.otf';
 
 export default createGlobalStyle`
   @font-face {
@@ -43,6 +43,7 @@ export default createGlobalStyle`
   
   body {
     margin: 0;
+    background-color: #F9F7F7;
   }
 
-`
+`;
