@@ -3,10 +3,8 @@ import AppRouter from './routes/AppRouter';
 import GlobalStyle from './styles/globalStyle';
 import theme from './styles/theme';
 
-import TheButton from './components/UI/TheButton';
 import TheHeader from './components/layout/TheHeader';
 import TheFooter from './components/layout/TheFooter';
-import Card from './components/UI/Card';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -16,8 +14,6 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <TheHeader />
-      <Card></Card>
-      <TheButton></TheButton>
       <AppRouter />
       <TheFooter />
     </ThemeProvider>
