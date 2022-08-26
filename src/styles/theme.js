@@ -4,11 +4,15 @@ const palette = {
   primaryLight: '#DBE2EF',
   primaryDark: '#112D4E',
 
+  border: '#E5E5E3',
   backGround: '#F9F7F7',
+
+  success: '#006633',
+  danger: '#FF6347',
 
   black: '#000000',
   white: '#FFF',
-}
+};
 
 // 레이아웃 관련
 const common = {
@@ -16,6 +20,11 @@ const common = {
     display: flex;
     align-items: center;
     justify-content: center;
+  `,
+  flexEnd: `
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   `,
   flexAround: `
     display: flex;
@@ -28,7 +37,7 @@ const common = {
     align-items: center;
     justify-content: flex-start;
   `,
-}
+};
 
 // font 관련
 const fontSizes = {
@@ -43,12 +52,12 @@ const fontSizes = {
   smallParagraph: '1.4rem',
 
   inputErrorMessage: '1.4rem',
-}
+};
 const fontWeight = {
   bold: 800,
   medium: 700,
   normal: 400,
-}
+};
 
 // 지정해둔 값 내보내기
 const theme = {
@@ -56,6 +65,6 @@ const theme = {
   common,
   fontSizes,
   fontWeight,
-}
+};
 
-export default theme
+export default theme;
