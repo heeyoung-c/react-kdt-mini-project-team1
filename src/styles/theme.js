@@ -12,6 +12,7 @@ const palette = {
 
   black: '#000000',
   white: '#FFF',
+  gray: '#808080',
 };
 
 // 레이아웃 관련
@@ -30,6 +31,11 @@ const common = {
     display: flex;
     align-items: center;
     justify-content: space-around;
+  `,
+  flexSpaceBetWeen: `
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   `,
   flexColumnStart: `
     display: flex;
@@ -59,12 +65,19 @@ const fontWeight = {
   normal: 400,
 };
 
+// 버튼 관련
+const ButtonSizes = {
+  width: '7rem',
+  height: '4rem',
+};
+
 // 지정해둔 값 내보내기
 const theme = {
   palette,
   common,
   fontSizes,
   fontWeight,
+  ButtonSizes,
 };
 
 export default theme;
