@@ -40,6 +40,17 @@ export const SubTitle = styled.div`
   color: ${({ theme }) => theme.palette.gray};
 `;
 
-export const BtnDiv = styled.div`
-  ${({ theme }) => theme.common.flexCenter};
+export const AmoutTitle = styled.span`
+  font-size: ${({ theme }) => theme.fontSizes.subtitle};
+  color: ${({ theme }) => theme.palette.gray};
+`;
+
+export const AmoutDiv = styled.div`
+  margin-top: 2rem;
+`;
+
+export const ButtonDiv = styled.div`
+  ${({ theme }) => theme.common.flexSpaceBetWeen};
+  margin-bottom: 1rem;
+  padding-right: 1rem;
 `;
