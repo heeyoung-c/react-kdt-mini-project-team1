@@ -11,16 +11,17 @@ const Card = ({ title, supporter, amount }) => {
             <S.Title>{title}</S.Title>
             <S.SubTitle>{supporter}</S.SubTitle>
           </div>
-          <S.BtnDiv>
-            <Button buttonName={'신청'} />
-          </S.BtnDiv>
         </S.CardTop>
         <S.CardBottom>
           <S.FlexGlow />
-          <div>
-            <S.SubTitle>한도</S.SubTitle> {amount} 원
-          </div>
+          <S.AmoutDiv>
+            <S.AmoutTitle>한도</S.AmoutTitle> {amount} 원
+          </S.AmoutDiv>
         </S.CardBottom>
+        <S.ButtonDiv>
+          <S.FlexGlow />
+          <Button buttonName={'신청'} />
+        </S.ButtonDiv>
       </S.Card>
     </S.Container>
   );
