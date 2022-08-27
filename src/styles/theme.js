@@ -13,6 +13,7 @@ const palette = {
   black: '#000000',
   white: '#FFF',
   gray: '#808080',
+  red: '#ff0f0f',
 };
 
 // 레이아웃 관련
