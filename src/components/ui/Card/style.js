@@ -6,34 +6,51 @@ export const Container = styled.div`
 `;
 
 export const Card = styled.div`
-  border: 0.1rem solid black;
   width: 80%;
   margin-bottom: 8rem;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
-    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  padding: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   font-size: ${({ theme }) => theme.fontSizes.title};
   border-radius: 0.6rem;
-  background-color: ${({ theme }) => theme.palette.backGroud};
+  background-color: ${({ theme }) => theme.palette.white};
 `;
 
 export const CardTop = styled.div`
-  ${({ theme }) => theme.common.flexStart};
-  color: ${({ theme }) => theme.palette.black};
-
+  ${({ theme }) => theme.common.flexSpaceBetWeen};
   margin: 1rem 1rem 0;
 `;
 
-export const CardMiddle = styled.div`
-  ${({ theme }) => theme.common.flexCenter};
-  color: ${({ theme }) => theme.palette.black};
-
-  margin: 0 4rem;
-  border: 0.2rem dashed;
-  font-size: 5rem;
+export const CardBottom = styled.div`
+  ${({ theme }) => theme.common.flexSpaceBetWeen};
+  color: ${({ theme }) => theme.palette.primary};
+  margin-bottom: 1rem;
+  padding-right: 1rem;
 `;
 
-export const CardBottom = styled.div`
-  ${({ theme }) => theme.common.flexColumnStart};
-  color: ${({ theme }) => theme.palette.black};
+export const FlexGlow = styled.div`
+  flex-glow: 1;
+`;
+
+export const Title = styled.div`
+  font-size: ${({ theme }) => theme.fontSizes.title};
+`;
+
+export const SubTitle = styled.div`
+  font-size: ${({ theme }) => theme.fontSizes.subtitle};
+  color: ${({ theme }) => theme.palette.gray};
+`;
+
+export const AmoutTitle = styled.span`
+  font-size: ${({ theme }) => theme.fontSizes.subtitle};
+  color: ${({ theme }) => theme.palette.gray};
+`;
+
+export const AmoutDiv = styled.div`
+  margin-top: 2rem;
+`;
+
+export const ButtonDiv = styled.div`
+  ${({ theme }) => theme.common.flexSpaceBetWeen};
   margin-bottom: 1rem;
+  padding-right: 1rem;
 `;
