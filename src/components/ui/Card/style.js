@@ -27,8 +27,8 @@ export const CardBottom = styled.div`
   padding-right: 1rem;
 `;
 
-export const FlexGlow = styled.div`
-  flex-glow: 1;
+export const FlexGrow = styled.div`
+  flex-grow: 1;
 `;
 
 export const Title = styled.div`
@@ -40,12 +40,12 @@ export const SubTitle = styled.div`
   color: ${({ theme }) => theme.palette.gray};
 `;
 
-export const AmoutTitle = styled.span`
+export const AmountTitle = styled.span`
   font-size: ${({ theme }) => theme.fontSizes.subtitle};
   color: ${({ theme }) => theme.palette.gray};
 `;
 
-export const AmoutDiv = styled.div`
+export const AmountDiv = styled.div`
   margin-top: 2rem;
 `;
 
@@ -53,4 +53,9 @@ export const ButtonDiv = styled.div`
   ${({ theme }) => theme.common.flexSpaceBetWeen};
   margin-bottom: 1rem;
   padding-right: 1rem;
+`;
+
+export const Heart = styled.div`
+  color: ${({ theme, isHearted }) =>
+    isHearted ? theme.palette.red : theme.palette.black};
 `;
