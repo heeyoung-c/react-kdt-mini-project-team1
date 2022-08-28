@@ -13,7 +13,7 @@ const data = [
       '설립 후 7년 이내의 기술 및 지식을 기반으로 한 성장 및 발전 가능성 높은 기술형 창업기업',
     supporterName: '서울신용보증재단',
     supporterRegion: '서울',
-    supporterAmount: 2000000,
+    supporterAmount: 6000000,
   },
   {
     productName: '인천시 2022 소상공인시장진흥자금 특별보증',
