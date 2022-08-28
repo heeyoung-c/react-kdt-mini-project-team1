@@ -27,8 +27,13 @@ export default function BasicMenu() {
         aria-haspopup='true'
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
+        sx={{
+          padding: 0,
+          position: 'relative',
+          top: 3,
+        }}
       >
-        <AiOutlineMenu size={25} />
+        <AiOutlineMenu size={15} />
       </Button>
       <Menu
         id='basic-menu'
