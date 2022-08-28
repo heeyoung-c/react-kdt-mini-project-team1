@@ -5,3 +5,8 @@ export const TheHeader = styled.header`
   height: 4rem;
   font-size: ${({ theme }) => theme.fontSizes.title};
 `;
+
+export const ArrowBack = styled.div`
+  position: absolute;
+  left: 0;
+`;
