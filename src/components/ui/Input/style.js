@@ -3,13 +3,13 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 80%;
   margin: 0 auto;
-  border: 1px solid black;
 `;
 
 export const Label = styled.label`
   font-size: ${({ theme }) => theme.fontSizes.inputText};
   color: ${({ theme }) => theme.palette.primary};
   display: block;
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
 `;
 
 export const Input = styled.input`
