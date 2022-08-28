@@ -1,14 +1,9 @@
 import React from 'react';
 import * as S from './style';
 
-import {
-  AiOutlineSearch,
-  AiOutlineShoppingCart,
-  AiOutlineMenu,
-} from 'react-icons/ai';
+import { AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai';
 import { BiArrowBack } from 'react-icons/bi';
 import { useLocation, useNavigate } from 'react-router-dom';
-
 
 import BasicMenu from '../../Modal/hamburger';
 const TheHeader = () => {
@@ -23,7 +18,7 @@ const TheHeader = () => {
       ) : null}
       <div>{AiOutlineSearch()}</div>
       <div onClick={() => navigate('/cart')}>{AiOutlineShoppingCart()}</div>
-      <div>{AiOutlineMenu()}</div>
+
       <BasicMenu />
     </S.TheHeader>
   );
