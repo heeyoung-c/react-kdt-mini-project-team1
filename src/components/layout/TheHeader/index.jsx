@@ -1,17 +1,14 @@
 import React from 'react';
 import * as S from './style';
-import {
-  AiOutlineSearch,
-  AiOutlineShoppingCart,
-  AiOutlineMenu,
-} from 'react-icons/ai';
+import { AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai';
 
+import BasicMenu from '../../Modal/hamburger';
 const TheHeader = () => {
   return (
     <S.TheHeader>
       {AiOutlineSearch()}
       {AiOutlineShoppingCart()}
-      {AiOutlineMenu()}
+      <BasicMenu />
     </S.TheHeader>
   );
 };
