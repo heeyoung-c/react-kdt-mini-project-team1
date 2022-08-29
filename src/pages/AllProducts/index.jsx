@@ -11,6 +11,7 @@ const AllProducts = () => {
   const handleSelect = e => {
     setSelected(e.target.value);
   };
+  const [defaultOption, setDefaultOption] = useState(true);
 
   useEffect(() => {
     if (Selected && Selected === '이름순') {
@@ -25,10 +26,12 @@ const AllProducts = () => {
         }
       });
       setProducts(copy);
+      setDefaultOption(false);
     } else if (Selected && Selected === '한도순') {
       let copy = [...products];
       copy.sort((a, b) => b.supporterAmount - a.supporterAmount);
       setProducts(copy);
+      setDefaultOption(false);
     }
   }, [Selected]);
 
@@ -39,7 +42,7 @@ const AllProducts = () => {
           <S.Title>대출 검색</S.Title>
           <S.SelectDiv>
             <Form.Select size='sm' onChange={handleSelect}>
-              <option>정렬 선택</option>
+              {defaultOption && <option>정렬 선택</option>}
               <option>이름순</option>
               <option>한도순</option>
             </Form.Select>
