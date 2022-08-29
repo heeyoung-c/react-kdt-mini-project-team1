@@ -1,5 +1,6 @@
 import { useReducer } from 'react';
 import * as S from './style';
+import { validationFunc } from './validator';
 
 //액션 타입
 const CHANGE = 'CHANGE';
@@ -12,7 +13,7 @@ const inputReducer = (state, action) => {
       return {
         ...state,
         value: action.payload,
-        // isValid: validationFunc(action.payload, action.validators),
+        isValid: validationFunc(action.payload, action.validators),
       };
 
     case BLUR:
@@ -31,6 +32,7 @@ const Input = ({
   labelName,
   errorMessage,
   validators,
+  setUserInput,
 }) => {
   const [inputState, dispatch] = useReducer(inputReducer, {
     value: '',
@@ -46,6 +48,9 @@ const Input = ({
       payload: e.currentTarget.value,
       validators,
     });
+
+    const { name, value } = e.currentTarget;
+    setUserInput(prev => ({ ...prev, [name]: value }));
   };
 
   const onBlurHandler = () => {
