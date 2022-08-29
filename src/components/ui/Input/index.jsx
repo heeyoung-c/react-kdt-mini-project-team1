@@ -36,7 +36,7 @@ const Input = ({
 }) => {
   const [inputState, dispatch] = useReducer(inputReducer, {
     value: '',
-    isValid: true,
+    isValid: false,
     isBlur: false,
   });
 

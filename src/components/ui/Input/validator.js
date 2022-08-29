@@ -4,12 +4,13 @@ const EMAIL = 'EMAIL';
 
 //enum 가능
 const emailRule =
-  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+  /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 
 export const validators = {
   MIN_LENGTH: value => ({ type: MIN_LENGTH, value }),
   MAX_LENGTH: value => ({ type: MAX_LENGTH, value }),
   EMAIL: () => ({ type: EMAIL }),
+  EMPTY: () => ({ type: EMPTY }),
 };
 
 export const validationFunc = (inputValue, validators) => {
