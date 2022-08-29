@@ -17,7 +17,7 @@ export const Title = styled.div`
 
 export const SelectDiv = styled.div`
   margin-left: 1rem;
-  width: 6.5rem;
+  width: 8rem;
 `;
 
 export const FlexGrow = styled.div`

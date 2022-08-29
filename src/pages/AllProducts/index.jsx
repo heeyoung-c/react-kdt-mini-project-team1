@@ -39,6 +39,7 @@ const AllProducts = () => {
           <S.Title>대출 검색</S.Title>
           <S.SelectDiv>
             <Form.Select size='sm' onChange={handleSelect}>
+              <option>정렬 선택</option>
               <option>이름순</option>
               <option>한도순</option>
             </Form.Select>
