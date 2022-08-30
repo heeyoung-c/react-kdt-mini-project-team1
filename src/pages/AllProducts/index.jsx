@@ -9,21 +9,25 @@ import { useGetSearchProductsQuery } from '~/api/searchApi';
 
 const AllProducts = () => {
   const [products, setProducts] = useState(data2);
-  const [Selected, setSelected] = useState('');
+  const [sortSelected, setSortSelected] = useState(null);
+  const [conditionSelected, setConditionSelected] = useState(null);
   const [defaultOption, setDefaultOption] = useState(true);
-  const handleSelect = e => {
-    setSelected(e.target.value);
+  const handleSortSelect = e => {
+    setSortSelected(e.target.value);
+  };
+  const handleConditionSelect = e => {
+    setConditionSelected(e.target.value);
   };
   const { keyword } = useSelector(state => {
     return state;
   });
   const { data } = useGetSearchProductsQuery({
-    title: 'TITLE',
+    title: conditionSelected === '내용' ? 'CONTENT' : 'TITLE',
     keyword,
   });
 
   useEffect(() => {
-    if (Selected && Selected === '이름순') {
+    if (sortSelected && sortSelected === '이름순') {
       let copy = [...products];
       copy.sort((a, b) => {
         if (a.productName < b.productName) {
@@ -36,13 +40,13 @@ const AllProducts = () => {
       });
       setProducts(copy);
       setDefaultOption(false);
-    } else if (Selected && Selected === '한도순') {
+    } else if (sortSelected && sortSelected === '한도순') {
       let copy = [...products];
       copy.sort((a, b) => b.supporterAmount - a.supporterAmount);
       setProducts(copy);
       setDefaultOption(false);
     }
-  }, [Selected]);
+  }, [sortSelected]);
 
   useEffect(() => {
     keyword && console.log(data);
@@ -53,14 +57,21 @@ const AllProducts = () => {
       <S.Div>
         <S.TitleDiv>
           <S.Title>대출 검색</S.Title>
+          <S.FlexGrow />
           <S.SelectDiv>
-            <Form.Select size='sm' onChange={handleSelect}>
-              {defaultOption && <option>정렬 선택</option>}
+            <Form.Select size='sm' onChange={handleSortSelect}>
+              {defaultOption && <option>정렬</option>}
               <option>이름순</option>
               <option>한도순</option>
             </Form.Select>
           </S.SelectDiv>
-          <S.FlexGrow />
+
+          <S.SelectDiv>
+            <Form.Select size='sm' onChange={handleConditionSelect}>
+              <option>제목</option>
+              <option>내용</option>
+            </Form.Select>
+          </S.SelectDiv>
         </S.TitleDiv>
       </S.Div>
 
