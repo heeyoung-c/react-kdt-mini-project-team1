@@ -1,17 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import * as S from './style';
-import data from './data';
+import data2 from './data';
 import Card from '~/components/ui/Card';
 import SearchBar from '~/components/ui/SearchBar';
 import Form from 'react-bootstrap/Form';
+import { useGetSearchProductsQuery } from '~/api/searchApi';
 
 const AllProducts = () => {
-  const [products, setProducts] = useState(data);
+  const [products, setProducts] = useState(data2);
   const [Selected, setSelected] = useState('');
+  const [defaultOption, setDefaultOption] = useState(true);
   const handleSelect = e => {
     setSelected(e.target.value);
   };
-  const [defaultOption, setDefaultOption] = useState(true);
+  const { keyword } = useSelector(state => {
+    return state;
+  });
+  const { data } = useGetSearchProductsQuery({
+    title: 'TITLE',
+    keyword,
+  });
 
   useEffect(() => {
     if (Selected && Selected === '이름순') {
@@ -35,6 +44,10 @@ const AllProducts = () => {
     }
   }, [Selected]);
 
+  useEffect(() => {
+    keyword && console.log(data);
+  }, [keyword]);
+
   return (
     <div>
       <S.Div>
@@ -54,15 +67,13 @@ const AllProducts = () => {
       <SearchBar />
 
       {products.map((product, i) => {
-        const { supporterName, productName, productContent, supporterAmount } =
-          product;
+        const { supporterName, productName, supporterAmount } = product;
 
         return (
           <Card
             key={i}
             title={productName}
             supporter={supporterName}
-            // content={productContent}
             amount={supporterAmount
               .toString()
               .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
