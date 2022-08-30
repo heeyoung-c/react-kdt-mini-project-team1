@@ -1,4 +1,4 @@
-const data = [
+const data2 = [
   {
     productName: '전통시장 소액대출',
     productContent:
@@ -33,4 +33,4 @@ const data = [
   },
 ];
 
-export default data;
+export default data2;
