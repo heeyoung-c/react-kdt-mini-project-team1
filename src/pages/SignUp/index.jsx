@@ -1,17 +1,38 @@
 import { useState } from 'react';
 import Input from '../../components/ui/Input';
 import { validators } from '../../components/ui/Input/validator';
-import Button from '../../components/ui/TheButton';
+import TheButton from '../../components/ui/TheButton';
 import * as S from './style';
 
+const regions = ['서울', '경기', '인천'];
 const SignUp = () => {
-  const [userInput, setUserInput] = useState({ email: '', password: '' });
+  const [userInput, setUserInput] = useState({
+    email: '',
+    password: '',
+    username: '',
+    job: '',
+    region: '',
+    hopeAmount: 0,
+  });
 
   const onClickHandler = () => {
     console.log(userInput);
   };
+
+  const selectHandler = e => {
+    e.preventDefault();
+    console.log(e.currentTarget.value);
+    const { name, value } = e.currentTarget;
+    setUserInput(prev => ({ ...prev, [name]: value }));
+  };
+
+  const onChangeHandler = e => {
+    console.log(e.currentTarget.value);
+    const { name, value } = e.currentTarget;
+    setUserInput(prev => ({ ...prev, [name]: value }));
+  };
   return (
-    <S.Form>
+    <S.FormContainer>
       <S.Title>회원가입</S.Title>
       <Input
         type='text'
@@ -31,8 +52,52 @@ const SignUp = () => {
         validators={[validators.MIN_LENGTH(8), validators.MAX_LENGTH(15)]}
         setUserInput={setUserInput}
       />
-      <Button buttonName='가입' onClick={onClickHandler} />
-    </S.Form>
+      <Input
+        type='text'
+        placeholder='사용자명을 입력해주세요'
+        name='username'
+        labelName='사용자명'
+        errorMessage='사용자명은 5~12자로 입력해주세요'
+        validators={[validators.MIN_LENGTH(5), validators.MAX_LENGTH(12)]}
+        setUserInput={setUserInput}
+      />
+
+      <S.ItemContainer>
+        <S.Label>지역을 선택해주세요</S.Label>
+        {regions.map(region => (
+          <S.Region
+            onClick={selectHandler}
+            key={region}
+            name='region'
+            value={region}
+          >
+            {region}
+          </S.Region>
+        ))}
+      </S.ItemContainer>
+      <S.ItemContainer>
+        <S.Label>희망 금액을 선택해주세요</S.Label>
+        <S.Range
+          name='hopeAmount'
+          onChange={onChangeHandler}
+          min='0'
+          max='100000000'
+          value={userInput.hopeAmount}
+          step='1000000'
+        />
+        <div>
+          {userInput.hopeAmount
+            .toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+          원 이상
+        </div>
+      </S.ItemContainer>
+      <TheButton
+        buttonName='회원가입'
+        onClick={onClickHandler}
+        formbutton='true'
+      />
+    </S.FormContainer>
   );
 };
 

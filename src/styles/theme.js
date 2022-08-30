@@ -67,9 +67,14 @@ const fontWeight = {
 };
 
 // 버튼 관련
-const ButtonSizes = {
+const normalButton = {
   width: '7rem',
   height: '3rem',
+};
+
+const formButton = {
+  width: '80%',
+  height: '4rem',
 };
 
 // 지정해둔 값 내보내기
@@ -78,7 +83,8 @@ const theme = {
   common,
   fontSizes,
   fontWeight,
-  ButtonSizes,
+  normalButton,
+  formButton,
 };
 
 export default theme;
