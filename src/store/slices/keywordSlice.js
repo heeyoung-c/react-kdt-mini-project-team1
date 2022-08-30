@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export const keyword = createSlice({
   name: 'keyword',
-  initialState: '',
+  initialState: null,
   reducers: {
     changeKeyword(state, val) {
       return val.payload;
