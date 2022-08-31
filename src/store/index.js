@@ -3,6 +3,7 @@ import { createLogger } from 'redux-logger';
 import counterReducer from './slices/counterSlice';
 import { keyword } from './slices/keywordSlice';
 import { productsApi } from '~/api/productsApi';
+import { allProductsApi } from '~/api/allProductsApi';
 import { searchApi } from '~/api/searchApi';
 // SignUp, SignIn
 import { authApi } from '../api/authApi';
@@ -18,6 +19,7 @@ const store = configureStore({
     counter: counterReducer,
     keyword: keyword.reducer,
     [productsApi.reducerPath]: productsApi.reducer,
+    [allProductsApi.reducerPath]: allProductsApi.reducer,
     [searchApi.reducerPath]: searchApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
     // customer rtq query
@@ -25,7 +27,7 @@ const store = configureStore({
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(
-      [productsApi.middleware, searchApi.middleware, authApi.middleware],
+      [productsApi.middleware, searchApi.middleware, allProductsApi.middleware, authApi.middleware],
       logger,
     ),
 });

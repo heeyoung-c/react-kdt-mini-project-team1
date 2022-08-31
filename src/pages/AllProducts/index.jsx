@@ -6,9 +6,10 @@ import Card from '~/components/ui/Card';
 import SearchBar from '~/components/ui/SearchBar';
 import Form from 'react-bootstrap/Form';
 import { useGetSearchProductsQuery } from '~/api/searchApi';
+import { useGetAllProductsQuery } from '~/api/allProductsApi';
 
 const AllProducts = () => {
-  const [products, setProducts] = useState(data2);
+  const { data: products, isLoading, isError } = useGetAllProductsQuery();
   const [sortSelected, setSortSelected] = useState(null);
   const [conditionSelected, setConditionSelected] = useState(null);
   const [defaultOption, setDefaultOption] = useState(true);
@@ -21,10 +22,10 @@ const AllProducts = () => {
   const { keyword } = useSelector(state => {
     return state;
   });
-  const { data } = useGetSearchProductsQuery({
-    title: conditionSelected === '내용' ? 'CONTENT' : 'TITLE',
-    keyword,
-  });
+  // const { data } = useGetSearchProductsQuery({
+  //   title: conditionSelected === '내용' ? 'CONTENT' : 'TITLE',
+  //   keyword,
+  // });
 
   useEffect(() => {
     if (sortSelected && sortSelected === '이름순') {
@@ -48,9 +49,12 @@ const AllProducts = () => {
     }
   }, [sortSelected]);
 
-  useEffect(() => {
-    keyword && console.log(data);
-  }, [keyword]);
+  if (isLoading) {
+    return <div>로딩 중...</div>;
+  }
+  if (isError || !products) {
+    return <div>오류 발생</div>;
+  }
 
   return (
     <div>
