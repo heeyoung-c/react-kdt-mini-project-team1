@@ -4,6 +4,8 @@ import counterReducer from './slices/counterSlice';
 import { keyword } from './slices/keywordSlice';
 import { productsApi } from '~/api/productsApi';
 import { searchApi } from '~/api/searchApi';
+// SignUp, SignIn
+import { authApi } from '../api/authApi';
 // CustomProducts
 import { customApi } from '../api/customApi';
 // etc
@@ -17,6 +19,7 @@ const store = configureStore({
     keyword: keyword.reducer,
     [productsApi.reducerPath]: productsApi.reducer,
     [searchApi.reducerPath]: searchApi.reducer,
+    [authApi.reducerPath]: authApi.reducer,
     // customer rtq query
     [customApi.reducerPath]: customApi.reducer,
   },
