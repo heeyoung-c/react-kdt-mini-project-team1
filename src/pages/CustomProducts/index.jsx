@@ -18,16 +18,15 @@ const CustomProducts = () => {
   return (
     <div>
       <UserCard />
-      {products.map(post => (
-        <>
-          <Card
-            title={post.productName}
-            supporter={post.supporterName}
-            amount={post.supporterAmount
-              .toString()
-              .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-          />
-        </>
+      {products.map((post, i) => (
+        <Card
+          key={post.id}
+          title={post.productName}
+          supporter={post.supporterName}
+          amount={post.supporterAmount
+            .toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+        />
       ))}
     </div>
   );
