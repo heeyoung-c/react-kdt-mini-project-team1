@@ -2,7 +2,9 @@ import { configureStore } from '@reduxjs/toolkit';
 import { createLogger } from 'redux-logger';
 import counterReducer from './slices/counterSlice';
 import { keyword } from './slices/keywordSlice';
+import { searchProducts } from './slices/searchSlice';
 import { productsApi } from '~/api/productsApi';
+import { allProductsApi } from '~/api/allProductsApi';
 import { searchApi } from '~/api/searchApi';
 // SignUp, SignIn
 import { authApi } from '../api/authApi';
@@ -17,7 +19,9 @@ const store = configureStore({
   reducer: {
     counter: counterReducer,
     keyword: keyword.reducer,
+    searchProducts: searchProducts.reducer,
     [productsApi.reducerPath]: productsApi.reducer,
+    [allProductsApi.reducerPath]: allProductsApi.reducer,
     [searchApi.reducerPath]: searchApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
     // customer rtq query
@@ -28,8 +32,9 @@ const store = configureStore({
       [
         productsApi.middleware,
         searchApi.middleware,
-        authApi.middleware,
         customApi.middleware,
+        allProductsApi.middleware,
+        authApi.middleware,
       ],
       logger,
     ),

@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import * as S from './style';
-import data2 from './data';
 import Card from '~/components/ui/Card';
 import SearchBar from '~/components/ui/SearchBar';
 import Form from 'react-bootstrap/Form';
-import { useGetSearchProductsQuery } from '~/api/searchApi';
+import { useGetAllProductsQuery } from '~/api/allProductsApi';
 
 const AllProducts = () => {
-  const [products, setProducts] = useState(data2);
+  const { data: products, isLoading, isError } = useGetAllProductsQuery();
   const [sortSelected, setSortSelected] = useState(null);
   const [conditionSelected, setConditionSelected] = useState(null);
   const [defaultOption, setDefaultOption] = useState(true);
@@ -18,12 +17,8 @@ const AllProducts = () => {
   const handleConditionSelect = e => {
     setConditionSelected(e.target.value);
   };
-  const { keyword } = useSelector(state => {
+  const { keyword, searchProducts } = useSelector(state => {
     return state;
-  });
-  const { data } = useGetSearchProductsQuery({
-    title: conditionSelected === '내용' ? 'CONTENT' : 'TITLE',
-    keyword,
   });
 
   useEffect(() => {
@@ -39,6 +34,7 @@ const AllProducts = () => {
         }
       });
       setProducts(copy);
+      console.log(copy);
       setDefaultOption(false);
     } else if (sortSelected && sortSelected === '한도순') {
       let copy = [...products];
@@ -48,9 +44,13 @@ const AllProducts = () => {
     }
   }, [sortSelected]);
 
-  useEffect(() => {
-    keyword && console.log(data);
-  }, [keyword]);
+  if (isLoading) {
+    return <div>로딩 중...</div>;
+  }
+  if (isError || !products) {
+    return <div>오류 발생</div>;
+  }
+  console.log(searchProducts);
 
   return (
     <div>
@@ -75,22 +75,61 @@ const AllProducts = () => {
         </S.TitleDiv>
       </S.Div>
 
-      <SearchBar />
+      <SearchBar keyword={keyword} conditionSelected={conditionSelected} />
 
-      {products.map((product, i) => {
-        const { supporterName, productName, supporterAmount } = product;
+      {searchProducts === null ? (
+        products.map(product => {
+          const {
+            id,
+            bookmarkProduct,
+            supporterName,
+            productName,
+            supporterAmount,
+          } = product;
 
-        return (
-          <Card
-            key={i}
-            title={productName}
-            supporter={supporterName}
-            amount={supporterAmount
-              .toString()
-              .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-          />
-        );
-      })}
+          return (
+            <Card
+              key={id}
+              title={productName}
+              supporter={supporterName}
+              amount={supporterAmount
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+              bookmark={bookmarkProduct}
+            />
+          );
+        })
+      ) : searchProducts.length === 0 ? (
+        <>
+          <S.NotIcon className='material-icons'>error_outline</S.NotIcon>
+          <S.NotMsg>
+            <S.ColorMsg>{`"${keyword}"`}</S.ColorMsg>
+            <span>에 대한 검색결과가 없습니다.</span>
+          </S.NotMsg>
+        </>
+      ) : (
+        searchProducts.map(product => {
+          const {
+            id,
+            bookmarkProduct,
+            supporterName,
+            productName,
+            supporterAmount,
+          } = product;
+
+          return (
+            <Card
+              key={id}
+              title={productName}
+              supporter={supporterName}
+              amount={supporterAmount
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+              bookmark={bookmarkProduct}
+            />
+          );
+        })
+      )}
     </div>
   );
 };

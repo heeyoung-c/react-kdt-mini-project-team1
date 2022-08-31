@@ -23,3 +23,20 @@ export const SelectDiv = styled.div`
 export const FlexGrow = styled.div`
   flex-grow: 1;
 `;
+
+export const NotIcon = styled.div`
+  ${({ theme }) => theme.common.flexCenter};
+  font-size: 3rem;
+  margin-top: 40%;
+`;
+
+export const NotMsg = styled.div`
+  ${({ theme }) => theme.common.flexCenter};
+  font-size: ${({ theme }) => theme.fontSizes.bigParagraph};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  margin-top: 1rem;
+`;
+
+export const ColorMsg = styled.span`
+  color: #ff7f50;
+`;
