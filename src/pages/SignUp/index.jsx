@@ -3,21 +3,21 @@ import Input from '../../components/ui/Input';
 import { validators } from '../../components/ui/Input/validator';
 import TheButton from '../../components/ui/TheButton';
 import * as S from './style';
+import { useSignUpMutation } from '../../api/authApi';
 
 const regions = ['서울', '경기', '인천'];
+
 const SignUp = () => {
+  const [signUp] = useSignUpMutation();
   const [userInput, setUserInput] = useState({
     email: '',
     password: '',
     username: '',
-    job: '',
     region: '',
     hopeAmount: 0,
   });
 
-  const onClickHandler = () => {
-    console.log(userInput);
-  };
+  // HANDLER
 
   const selectHandler = e => {
     e.preventDefault();
@@ -31,6 +31,14 @@ const SignUp = () => {
     const { name, value } = e.currentTarget;
     setUserInput(prev => ({ ...prev, [name]: value }));
   };
+
+  const onSubmitHandler = () => {
+    signUp({ data: userInput });
+    console.log(userInput);
+  };
+
+  //JSX
+
   return (
     <S.FormContainer>
       <S.Title>회원가입</S.Title>
@@ -94,7 +102,7 @@ const SignUp = () => {
       </S.ItemContainer>
       <TheButton
         buttonName='회원가입'
-        onClick={onClickHandler}
+        onClick={onSubmitHandler}
         formbutton='true'
       />
     </S.FormContainer>
