@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 
 import Button from '@mui/material/Button';
 
@@ -9,8 +9,11 @@ import MenuItem from '@mui/material/MenuItem';
 
 import { AiOutlineMenu } from 'react-icons/ai';
 
+import { useGetPersonQuery } from '~/api/customApi';
 export default function BasicMenu() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const { data: person, isLoading, isError } = useGetPersonQuery();
+
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -18,7 +21,12 @@ export default function BasicMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  if (isLoading) {
+    return <div>로딩 중...</div>;
+  }
+  if (isError || !person) {
+    return <div>오류 발생</div>;
+  }
   return (
     <Fragment>
       <Button
@@ -47,32 +55,32 @@ export default function BasicMenu() {
         <MenuItem
           onClick={handleClose}
           sx={{
-            // padding: 2,
             width: 250,
             height: 100,
             justifyContent: 'center',
+            fontSize: 15,
           }}
         >
-          Profile
+          {person.username}
         </MenuItem>
         <MenuItem
           onClick={handleClose}
           sx={{
-            // padding: 2,
             width: 250,
             height: 100,
             justifyContent: 'center',
+            fontSize: 15,
           }}
         >
-          My account
+          {person.email}
         </MenuItem>
         <MenuItem
           onClick={handleClose}
           sx={{
-            // padding: 2,
             width: 250,
             height: 100,
             justifyContent: 'center',
+            fontSize: 15,
           }}
         >
           Logout
