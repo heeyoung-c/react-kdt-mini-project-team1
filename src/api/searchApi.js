@@ -16,6 +16,9 @@ export const searchApi = createApi({
             'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLsp4Dtm4giLCJpZCI6NSwiZXhwIjoxNjYyODA1NjE5LCJlbWFpbCI6IndsZ25zQG5hdmVyLmNvbSJ9.3AS4Xmm_UNN-4lDp-X6qGKq7VQUAVrdmElA8ncb_VoqIjOx3eE60rqzbYhaDAjCSwgIK3if9uzXgi1hkacoyKw',
         },
       }),
+      transformResponse: responseData => {
+        return responseData['data'];
+      },
     }),
   }),
 });
