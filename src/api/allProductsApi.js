@@ -1,15 +1,15 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 const url = import.meta.env.VITE_SERVICE_URL;
 
-export const searchApi = createApi({
-  reducerPath: 'searchApi',
+export const allProductsApi = createApi({
+  reducerPath: 'allProductsApi',
   baseQuery: fetchBaseQuery({
     baseUrl: url,
   }),
   endpoints: builder => ({
-    getSearchProducts: builder.query({
-      query: payload => ({
-        url: `products/search?searchCondition=${payload.title}&searchKeyword=${payload.keyword}`,
+    getAllProducts: builder.query({
+      query: () => ({
+        url: 'products/list',
         method: 'GET',
         headers: {
           Authorization:
@@ -20,4 +20,4 @@ export const searchApi = createApi({
   }),
 });
 
-export const { useGetSearchProductsQuery } = searchApi;
+export const { useGetAllProductsQuery } = allProductsApi;
