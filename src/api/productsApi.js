@@ -8,7 +8,17 @@ export const productsApi = createApi({
   }),
   endpoints: builder => ({
     getWishProducts: builder.query({
-      query: () => 'bookmarks/1',
+      query: () => ({
+        url: 'products/list',
+        method: 'GET',
+        headers: {
+          Authorization:
+            'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0ZWFtMSIsImlkIjo0LCJleHAiOjE2NjI4MTA5NjMsImVtYWlsIjoidGVhbTFAZ21haWwuY29tIn0.sOBnKBtk1rFguwsVDFYiWcDmNLXWKMZGHLuLGZFGNwYD0DOSqaXHoLEz504MozfBg_M4oKKgJMB3vLvj58ozIw',
+        },
+      }),
+      transformResponse: responseData => {
+        return responseData['data'];
+      },
     }),
   }),
 });
