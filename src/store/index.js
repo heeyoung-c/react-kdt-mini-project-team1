@@ -5,6 +5,8 @@ import { keyword } from './slices/keywordSlice';
 import { productsApi } from '~/api/productsApi';
 import { allProductsApi } from '~/api/allProductsApi';
 import { searchApi } from '~/api/searchApi';
+// SignUp, SignIn
+import { authApi } from '../api/authApi';
 // CustomProducts
 import { customApi } from '../api/customApi';
 // etc
@@ -19,12 +21,13 @@ const store = configureStore({
     [productsApi.reducerPath]: productsApi.reducer,
     [allProductsApi.reducerPath]: allProductsApi.reducer,
     [searchApi.reducerPath]: searchApi.reducer,
+    [authApi.reducerPath]: authApi.reducer,
     // customer rtq query
     [customApi.reducerPath]: customApi.reducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(
-      [productsApi.middleware, searchApi.middleware, allProductsApi.middleware],
+      [productsApi.middleware, searchApi.middleware, allProductsApi.middleware, authApi.middleware],
       logger,
     ),
 });
