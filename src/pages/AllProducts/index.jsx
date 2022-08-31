@@ -9,8 +9,7 @@ import { useGetSearchProductsQuery } from '~/api/searchApi';
 import { useGetAllProductsQuery } from '~/api/allProductsApi';
 
 const AllProducts = () => {
-  const { data } = useGetAllProductsQuery();
-  const { data: products } = data;
+  const { data: products, isLoading, isError } = useGetAllProductsQuery();
   const [sortSelected, setSortSelected] = useState(null);
   const [conditionSelected, setConditionSelected] = useState(null);
   const [defaultOption, setDefaultOption] = useState(true);
@@ -49,6 +48,13 @@ const AllProducts = () => {
       setDefaultOption(false);
     }
   }, [sortSelected]);
+
+  if (isLoading) {
+    return <div>로딩 중...</div>;
+  }
+  if (isError || !products) {
+    return <div>오류 발생</div>;
+  }
 
   return (
     <div>
