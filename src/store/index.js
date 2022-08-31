@@ -25,7 +25,7 @@ const store = configureStore({
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(
-      [productsApi.middleware, searchApi.middleware],
+      [productsApi.middleware, searchApi.middleware, authApi.middleware],
       logger,
     ),
 });
