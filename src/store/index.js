@@ -32,6 +32,7 @@ const store = configureStore({
       [
         productsApi.middleware,
         searchApi.middleware,
+        customApi.middleware,
         allProductsApi.middleware,
         authApi.middleware,
       ],
