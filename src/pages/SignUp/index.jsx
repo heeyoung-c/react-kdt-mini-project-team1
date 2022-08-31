@@ -13,15 +13,11 @@ const SignUp = () => {
     email: '',
     password: '',
     username: '',
-    job: '',
     region: '',
     hopeAmount: 0,
   });
 
   // HANDLER
-  const onClickHandler = () => {
-    console.log(userInput);
-  };
 
   const selectHandler = e => {
     e.preventDefault();
