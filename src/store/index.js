@@ -1,6 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { createLogger } from 'redux-logger';
-import counterReducer from './slices/counterSlice';
 import { keyword } from './slices/keywordSlice';
 import { productsApi } from '~/api/productsApi';
 import { allProductsApi } from '~/api/allProductsApi';
@@ -16,7 +15,6 @@ const logger = createLogger();
 
 const store = configureStore({
   reducer: {
-    counter: counterReducer,
     keyword: keyword.reducer,
     [productsApi.reducerPath]: productsApi.reducer,
     [allProductsApi.reducerPath]: allProductsApi.reducer,
@@ -27,7 +25,12 @@ const store = configureStore({
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(
-      [productsApi.middleware, searchApi.middleware, allProductsApi.middleware, authApi.middleware],
+      [
+        productsApi.middleware,
+        searchApi.middleware,
+        allProductsApi.middleware,
+        authApi.middleware,
+      ],
       logger,
     ),
 });
