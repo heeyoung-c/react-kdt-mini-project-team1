@@ -1,6 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { createLogger } from 'redux-logger';
-import counterReducer from './slices/counterSlice';
 import { keyword } from './slices/keywordSlice';
 import { searchProducts } from './slices/searchSlice';
 import { productsApi } from '~/api/productsApi';
@@ -17,7 +16,6 @@ const logger = createLogger();
 
 const store = configureStore({
   reducer: {
-    counter: counterReducer,
     keyword: keyword.reducer,
     searchProducts: searchProducts.reducer,
     [productsApi.reducerPath]: productsApi.reducer,

@@ -4,7 +4,8 @@ import * as S from './style';
 import Card from '~/components/ui/Card';
 import SearchBar from '~/components/ui/SearchBar';
 import Form from 'react-bootstrap/Form';
-import { useGetAllProductsQuery } from '~/api/allProductsApi';
+import { useGetSearchProductsQuery } from '~/api/searchApi';
+import { useGetAllProductsQuery } from '~/api/productsApi';
 
 const AllProducts = () => {
   const { data: products, isLoading, isError } = useGetAllProductsQuery();
@@ -96,6 +97,7 @@ const AllProducts = () => {
                 .toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
               bookmark={bookmarkProduct}
+              id={id}
             />
           );
         })
@@ -126,6 +128,7 @@ const AllProducts = () => {
                 .toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
               bookmark={bookmarkProduct}
+              id={id}
             />
           );
         })

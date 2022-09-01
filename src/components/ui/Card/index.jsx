@@ -1,13 +1,36 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as S from './style';
 import {
   AiFillHeart,
   AiOutlineHeart,
   AiOutlineShoppingCart,
+  AiOutlineDelete,
 } from 'react-icons/ai';
+import { useAddBookMarkMutation } from '~/api/productsApi';
+import { useDeleteBookMarkMutation } from '~/api/productsApi';
+import { useAddCartsProductsMutation } from '~/api/productsApi';
+import { useDeleteCartProductMutation } from '../../../api/productsApi';
 
-const Card = ({ title, supporter, amount }) => {
-  const [isHearted, setIsHearted] = useState(false);
+const Card = ({ id, title, supporter, amount, bookmark, renderType }) => {
+  const [addBookMark] = useAddBookMarkMutation();
+  const [deleteBookMark] = useDeleteBookMarkMutation();
+  const [addCartsProducts] = useAddCartsProductsMutation();
+  const [deleteCartProduct] = useDeleteCartProductMutation();
+
+  const bookmarkHandler = ({ bookmark, id }) => {
+    console.log(bookmark);
+    console.log(id);
+
+    if (bookmark) {
+      console.log('삭제');
+      deleteBookMark(id);
+    } else {
+      console.log('추가');
+      addBookMark({
+        productId: id,
+      });
+    }
+  };
 
   return (
     <S.Container>
@@ -26,13 +49,40 @@ const Card = ({ title, supporter, amount }) => {
         </S.CardBottom>
         <S.ButtonDiv>
           <S.FlexGrow />
-          <S.Heart
-            onClick={() => setIsHearted(!isHearted)}
-            isHearted={isHearted}
-          >
-            {isHearted ? AiFillHeart() : AiOutlineHeart()}
-          </S.Heart>
-          <div>{AiOutlineShoppingCart()}</div>
+          {renderType === 'Cart' ? (
+            <div
+              onClick={() => {
+                deleteCartProduct(id);
+              }}
+            >
+              {AiOutlineDelete()}
+            </div>
+          ) : (
+            <>
+              <S.Heart
+                onClick={e => {
+                  e.stopPropagation();
+                  bookmarkHandler({
+                    bookmark,
+                    id,
+                  });
+                }}
+                bookmark={bookmark}
+              >
+                {bookmark ? AiFillHeart() : AiOutlineHeart()}
+              </S.Heart>
+              <div
+                onClick={() => {
+                  addCartsProducts({
+                    productId: id,
+                  }),
+                    alert('장바구니에 추가되었습니다');
+                }}
+              >
+                {AiOutlineShoppingCart()}
+              </div>
+            </>
+          )}
         </S.ButtonDiv>
       </S.Card>
     </S.Container>
