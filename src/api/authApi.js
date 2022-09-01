@@ -22,6 +22,11 @@ export const authApi = createApi({
         method: 'POST',
         body: data,
       }),
+      transformResponse: response => {
+        console.log('RTK쿼리쪽', response.data.authorization);
+
+        return response.data.authorization;
+      },
     }),
   }),
 });
