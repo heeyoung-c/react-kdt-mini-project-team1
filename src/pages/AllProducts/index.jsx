@@ -6,7 +6,7 @@ import Card from '~/components/ui/Card';
 import SearchBar from '~/components/ui/SearchBar';
 import Form from 'react-bootstrap/Form';
 import { useGetSearchProductsQuery } from '~/api/searchApi';
-import { useGetAllProductsQuery } from '~/api/allProductsApi';
+import { useGetAllProductsQuery } from '~/api/productsApi';
 
 const AllProducts = () => {
   const { data: products, isLoading, isError } = useGetAllProductsQuery();
@@ -81,17 +81,25 @@ const AllProducts = () => {
 
       <SearchBar />
 
-      {products.map((product, i) => {
-        const { supporterName, productName, supporterAmount } = product;
+      {products.map(product => {
+        const {
+          id,
+          bookmarkProduct,
+          supporterName,
+          productName,
+          supporterAmount,
+        } = product;
 
         return (
           <Card
-            key={i}
+            key={id}
             title={productName}
             supporter={supporterName}
             amount={supporterAmount
               .toString()
               .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+            bookmark={bookmarkProduct}
+            id={id}
           />
         );
       })}
