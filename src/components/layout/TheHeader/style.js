@@ -8,5 +8,5 @@ export const TheHeader = styled.header`
 
 export const ArrowBack = styled.div`
   position: absolute;
-  left: 0;
+  left: 1rem;
 `;

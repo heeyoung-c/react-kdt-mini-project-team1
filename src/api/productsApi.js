@@ -64,6 +64,13 @@ export const productsApi = createApi({
         url: `bookmarks/${id}`,
         method: 'DELETE',
       }),
+      invalidatesTags: result =>
+        result
+          ? [
+              { type: 'Products', id: 'ALLLIST' },
+              { type: 'Products', id: 'BOOKMARKLIST' },
+            ]
+          : [],
     }),
 
     // 장바구니 상품 조회
@@ -95,6 +102,18 @@ export const productsApi = createApi({
         url: `carts/${id}`,
         method: 'DELETE',
       }),
+      invalidatesTags: result =>
+        result ? [{ type: 'Products', id: 'CARTSLIST' }] : [],
+    }),
+
+    // 장바구니 상품 신청(전체 삭제)
+    orderCartProduct: builder.mutation({
+      query: () => ({
+        url: 'carts/order',
+        method: 'DELETE',
+      }),
+      invalidatesTags: result =>
+        result ? [{ type: 'Products', id: 'CARTSLIST' }] : [],
     }),
   }),
 });
@@ -107,4 +126,5 @@ export const {
   useGetCartsProductsQuery,
   useAddCartsProductsMutation,
   useDeleteCartProductMutation,
+  useOrderCartProductMutation,
 } = productsApi;
