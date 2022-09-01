@@ -5,11 +5,13 @@ import { useGetProductsQuery } from '../../api/customApi';
 import Card from '../../components/ui/Card';
 // UserCard
 import UserCard from '../../components/ui/UserCard';
+// loading
+import Loading from '../../components/ui/Loading';
 const CustomProducts = () => {
   const { data: products, isLoading, isError } = useGetProductsQuery();
 
   if (isLoading) {
-    return <div>로딩 중...</div>;
+    return <Loading />;
   }
   if (isError || !products) {
     return <div>오류 발생</div>;

@@ -1,13 +1,21 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { Cookies } from 'react-cookie';
 const url = import.meta.env.VITE_SERVICE_URL;
-const accessToken =
-  'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiLsp4Dtm4giLCJpZCI6NSwiZXhwIjoxNjYyODA1NjE5LCJlbWFpbCI6IndsZ25zQG5hdmVyLmNvbSJ9.3AS4Xmm_UNN-4lDp-X6qGKq7VQUAVrdmElA8ncb_VoqIjOx3eE60rqzbYhaDAjCSwgIK3if9uzXgi1hkacoyKw';
+const cookies = new Cookies();
 
 export const productsApi = createApi({
   reducerPath: 'productsApi',
   tagTypes: ['Products'],
   baseQuery: fetchBaseQuery({
     baseUrl: url,
+    credentials: 'include',
+    prepareHeaders: (headers, { getState }) => {
+      const accessTokenCookies = cookies.get('accessToken');
+      if (accessTokenCookies) {
+        headers.set('Authorization', `${accessTokenCookies}`);
+      }
+      return headers;
+    },
   }),
   endpoints: builder => ({
     // 전체 상품 조회
@@ -15,9 +23,6 @@ export const productsApi = createApi({
       query: () => ({
         url: 'products/list',
         method: 'GET',
-        headers: {
-          Authorization: accessToken,
-        },
       }),
       providesTags: [{ type: 'Products', id: 'ALLLIST' }],
       transformResponse: responseData => {
@@ -30,10 +35,8 @@ export const productsApi = createApi({
       query: () => ({
         url: 'bookmarks/find',
         method: 'GET',
-        headers: {
-          Authorization: accessToken,
-        },
       }),
+      providesTags: [{ type: 'Products', id: 'BOOKMARKLIST' }],
       transformResponse: responseData => {
         return responseData['data'];
       },
@@ -45,12 +48,14 @@ export const productsApi = createApi({
         url: 'bookmarks/add',
         method: 'POST',
         body: payload,
-        headers: {
-          Authorization: accessToken,
-        },
       }),
       invalidatesTags: result =>
-        result ? [{ type: 'Products', id: 'ALLLIST' }] : [],
+        result
+          ? [
+              { type: 'Products', id: 'ALLLIST' },
+              { type: 'Products', id: 'BOOKMARKLIST' },
+            ]
+          : [],
     }),
 
     // 찜 상품 삭제
@@ -58,9 +63,6 @@ export const productsApi = createApi({
       query: id => ({
         url: `bookmarks/${id}`,
         method: 'DELETE',
-        headers: {
-          Authorization: accessToken,
-        },
       }),
     }),
 
@@ -69,9 +71,6 @@ export const productsApi = createApi({
       query: () => ({
         url: 'carts/find',
         method: 'GET',
-        headers: {
-          Authorization: accessToken,
-        },
       }),
       providesTags: [{ type: 'Products', id: 'CARTSLIST' }],
       transformResponse: responseData => {
@@ -85,9 +84,6 @@ export const productsApi = createApi({
         url: 'carts/add',
         method: 'POST',
         body: payload,
-        headers: {
-          Authorization: accessToken,
-        },
       }),
       invalidatesTags: result =>
         result ? [{ type: 'Products', id: 'CARTSLIST' }] : [],
@@ -98,9 +94,6 @@ export const productsApi = createApi({
       query: id => ({
         url: `carts/${id}`,
         method: 'DELETE',
-        headers: {
-          Authorization: accessToken,
-        },
       }),
     }),
   }),

@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from '~/components/ui/Card';
 import { useGetCartsProductsQuery } from '~/api/productsApi';
+import Loading from '../../components/ui/Loading';
 
 const Cart = () => {
   const {
@@ -9,7 +10,7 @@ const Cart = () => {
     isError,
   } = useGetCartsProductsQuery();
   if (isLoading) {
-    return <div>로딩 중...</div>;
+    return <Loading />;
   }
   if (isError || !cartsProducts) {
     return <div>오류 발생</div>;

@@ -16,7 +16,6 @@ const TheHeader = () => {
       {pathname === '/cart' ? (
         <S.ArrowBack onClick={() => navigate('/')}>{BiArrowBack()}</S.ArrowBack>
       ) : null}
-      <div>{AiOutlineSearch()}</div>
       <div onClick={() => navigate('/cart')}>{AiOutlineShoppingCart()}</div>
 
       <BasicMenu />

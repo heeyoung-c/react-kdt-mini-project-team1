@@ -10,22 +10,22 @@ import AllProducts from '~/pages/AllProducts';
 import CustomProducts from '~/pages/CustomProducts';
 import WishProducts from '~/pages/WishProducts';
 import Cart from '~/pages/Cart';
-
+import Layout from '../pages/Layout';
 const AppRouter = () => {
   return (
     <div>
       <Routes>
-        <Route path='/' element={<AllProducts />} />
+        <Route element={<Layout />}>
+          <Route path='/' element={<AllProducts />} />
+          <Route path='custom-products' element={<CustomProducts />} />
+          <Route path='all-products' element={<AllProducts />} />
+          <Route path='wish-products' element={<WishProducts />} />
+          <Route path='cart' element={<Cart />} />
+          <Route path='my-page' element={<MyPage />} />
+        </Route>
 
         <Route path='sign-up' element={<SignUp />} />
         <Route path='sign-in' element={<SignIn />} />
-        <Route path='my-page' element={<MyPage />} />
-
-        <Route path='custom-products' element={<CustomProducts />} />
-        <Route path='all-products' element={<AllProducts />} />
-        <Route path='wish-products' element={<WishProducts />} />
-        <Route path='cart' element={<Cart />} />
-        {/* 동적 라우팅.. 고려사항 */}
       </Routes>
     </div>
   );
