@@ -56,6 +56,6 @@ export const ButtonDiv = styled.div`
 `;
 
 export const Heart = styled.div`
-  color: ${({ theme, isHearted }) =>
-    isHearted ? theme.palette.red : theme.palette.black};
+  color: ${({ theme, bookmark }) =>
+    bookmark ? theme.palette.red : theme.palette.black};
 `;
