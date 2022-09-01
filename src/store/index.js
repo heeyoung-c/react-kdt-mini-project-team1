@@ -1,9 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { createLogger } from 'redux-logger';
 import { keyword } from './slices/keywordSlice';
 import { searchProducts } from './slices/searchSlice';
 import { productsApi } from '~/api/productsApi';
-import { allProductsApi } from '~/api/allProductsApi';
 import { searchApi } from '~/api/searchApi';
 // SignUp, SignIn
 import { authApi } from '../api/authApi';
@@ -12,30 +10,23 @@ import { customApi } from '../api/customApi';
 // etc
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 
-const logger = createLogger();
-
 const store = configureStore({
   reducer: {
     keyword: keyword.reducer,
     searchProducts: searchProducts.reducer,
     [productsApi.reducerPath]: productsApi.reducer,
-    [allProductsApi.reducerPath]: allProductsApi.reducer,
     [searchApi.reducerPath]: searchApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
     // customer rtq query
     [customApi.reducerPath]: customApi.reducer,
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(
-      [
-        productsApi.middleware,
-        searchApi.middleware,
-        customApi.middleware,
-        allProductsApi.middleware,
-        authApi.middleware,
-      ],
-      logger,
-    ),
+    getDefaultMiddleware().concat([
+      productsApi.middleware,
+      searchApi.middleware,
+      customApi.middleware,
+      authApi.middleware,
+    ]),
 });
 
 setupListeners(store.dispatch);

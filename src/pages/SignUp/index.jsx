@@ -89,7 +89,7 @@ const SignUp = () => {
           name='hopeAmount'
           onChange={onChangeHandler}
           min='0'
-          max='100000000'
+          max='10000000'
           value={userInput.hopeAmount}
           step='1000000'
         />

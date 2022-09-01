@@ -1,11 +1,12 @@
 import React from 'react';
 import Card from '~/components/ui/Card';
 import { useGetWishProductsQuery } from '~/api/productsApi';
+import Loading from '../../components/ui/Loading';
 
 const WishProducts = () => {
   const { data: wishProducts, isLoading, isError } = useGetWishProductsQuery();
   if (isLoading) {
-    return <div>로딩 중...</div>;
+    return <Loading />;
   }
   if (isError || !wishProducts) {
     return <div>오류 발생</div>;

@@ -6,6 +6,7 @@ import SearchBar from '~/components/ui/SearchBar';
 import Form from 'react-bootstrap/Form';
 import { useGetSearchProductsQuery } from '~/api/searchApi';
 import { useGetAllProductsQuery } from '~/api/productsApi';
+import Loading from '../../components/ui/Loading';
 
 const AllProducts = () => {
   const { data: products, isLoading, isError } = useGetAllProductsQuery();
@@ -46,12 +47,11 @@ const AllProducts = () => {
   }, [sortSelected]);
 
   if (isLoading) {
-    return <div>로딩 중...</div>;
+    return <Loading />;
   }
   if (isError || !products) {
     return <div>오류 발생</div>;
   }
-  console.log(searchProducts);
 
   return (
     <div>

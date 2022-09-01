@@ -12,7 +12,7 @@ const SignIn = () => {
     password: '',
   });
 
-  const [setCookie] = useCookies();
+  const [cookies, setCookie, removeCookie] = useCookies();
 
   useEffect(() => {
     setCookie('accessToken', token, { path: '/' });
