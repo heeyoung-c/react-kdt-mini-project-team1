@@ -11,7 +11,6 @@ const WishProducts = () => {
   if (isError || !wishProducts) {
     return <div>오류 발생</div>;
   }
-  console.log(wishProducts);
   // 찜 목록이 있는 경우를, wishProducts의 첫번째 아이템에 id 값이 있는지로 판별
   if (wishProducts[0].id) {
     return (
