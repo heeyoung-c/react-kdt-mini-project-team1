@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const TheFooter = styled.footer`
   ${({ theme }) => theme.common.flexAround};
@@ -14,9 +14,9 @@ export const TheFooter = styled.footer`
   text-decoration: none;
   font-family: 'NotoSansBold';
   font-size: ${({ theme }) => theme.fontSizes.buttonText};
-`
+`;
 
 export const CustomLink = styled(Link)`
   color: ${({ theme }) => theme.palette.primary};
   text-decoration: none;
-`
+`;
