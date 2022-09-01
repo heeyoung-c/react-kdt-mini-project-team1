@@ -1,16 +1,22 @@
-import { useState } from 'react';
-
+import { useEffect, useState } from 'react';
 import TheButton from '../../components/ui/TheButton';
 import * as S from './style';
 import { useSignInMutation } from '../../api/authApi';
+import { useCookies } from 'react-cookie';
 
 const SignIn = () => {
-  const [signIn] = useSignInMutation();
-  // const {data} = useSignInMutation();
+  const [signIn, { data: token, isLoading }] = useSignInMutation();
+
   const [userInput, setUserInput] = useState({
     email: '',
     password: '',
   });
+
+  const [setCookie] = useCookies();
+
+  useEffect(() => {
+    setCookie('accessToken', token, { path: '/' });
+  }, [token]);
 
   // HANDLER
 
@@ -20,8 +26,12 @@ const SignIn = () => {
     setUserInput(prev => ({ ...prev, [name]: value }));
   };
 
-  const onSubmitHandler = () => {
+  const onSubmitHandler = async () => {
+    // const res = await signIn({ data: userInput });
+    // console.log(res);
+
     signIn({ data: userInput });
+
     console.log(userInput);
   };
 
