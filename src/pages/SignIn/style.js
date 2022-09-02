@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Form from 'react-bootstrap/Form';
+
 export const FormContainer = styled.form`
   ${({ theme }) => theme.common.flexColumnStart};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
