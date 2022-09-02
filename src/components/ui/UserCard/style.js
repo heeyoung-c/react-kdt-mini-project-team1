@@ -18,5 +18,5 @@ export const H1 = styled.h1`
 `;
 
 export const P = styled.div`
-  color: ${({ theme }) => theme.palette.success};
+  color: ${({ theme }) => theme.palette.primary};
 `;
