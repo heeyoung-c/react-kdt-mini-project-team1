@@ -1,4 +1,3 @@
-import { style } from '@mui/system';
 import styled from 'styled-components';
 
 export const TheHeader = styled.header`
@@ -6,8 +5,8 @@ export const TheHeader = styled.header`
 `;
 
 export const Header_1 = styled.header`
-  ${({ theme }) => theme.common.flexEnd}
-  margin-bottom: 0.3rem
+  ${({ theme }) => theme.common.flexEnd};
+  margin-bottom: 0.3rem;
 `;
 
 export const Battery = styled.div`
