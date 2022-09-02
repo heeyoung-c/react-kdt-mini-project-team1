@@ -13,9 +13,13 @@ import { useGetPersonQuery } from '~/api/customApi';
 
 // hamburder
 import { AiOutlineMenu } from 'react-icons/ai';
+import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
+
 export default function BasicMenu() {
   const { data: person, isLoading, isError } = useGetPersonQuery();
-
+  const navigate = useNavigate();
+  const [cookies, setCookie, removeCookie] = useCookies();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = event => {
@@ -24,6 +28,11 @@ export default function BasicMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const logoutHandler = () => {
+    removeCookie('accessToken', { path: '/' });
+    navigate('/entry');
+  };
+
   if (isLoading) {
     return (
       <S.TheHeader>
@@ -87,7 +96,7 @@ export default function BasicMenu() {
           {person.email}
         </MenuItem>
         <MenuItem
-          onClick={handleClose}
+          onClick={logoutHandler}
           sx={{
             width: 250,
             height: 100,

@@ -1,8 +1,39 @@
+import { style } from '@mui/system';
 import styled from 'styled-components';
 
 export const TheHeader = styled.header`
+  font-size: ${({ theme }) => theme.fontSizes.title};
+`;
+
+export const Header_1 = styled.header`
   ${({ theme }) => theme.common.flexEnd}
-  height: 4rem;
+  margin-bottom: 0.3rem
+`;
+
+export const Battery = styled.div`
+  font-size: 2.1rem;
+  transform: rotate(-90deg);
+  margin-right: 2.3rem;
+`;
+
+export const Wifi = styled.div`
+  font-size: 1.8rem;
+  margin-right: 0.5rem;
+`;
+
+export const Signal = styled.div`
+  font-size: 1.8rem;
+  margin-right: 0.3rem;
+`;
+
+export const Time = styled.div`
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-left: 2.3rem;
+`;
+
+export const Header_2 = styled.header`
+  ${({ theme }) => theme.common.flexEnd}
   font-size: ${({ theme }) => theme.fontSizes.title};
 `;
 
@@ -13,7 +44,7 @@ export const ArrowBack = styled.div`
 
 export const CartLength = styled.div`
   position: absolute;
-  top: 0.8rem;
+  top: 2.8rem;
   right: 5.5rem;
   ${({ theme }) => theme.common.flexCenter};
   width: 1.5rem;
@@ -22,4 +53,7 @@ export const CartLength = styled.div`
   color: ${({ theme }) => theme.palette.white};
   font-size: ${({ theme }) => theme.fontSizes.smallParagraph};
   border-radius: 1rem;
+`;
+export const FlexGrow = styled.div`
+  flex-grow: 1;
 `;

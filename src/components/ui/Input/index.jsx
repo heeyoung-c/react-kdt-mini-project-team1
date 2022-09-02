@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
 import * as S from './style';
-import { validationFunc } from './validator';
+import { validationFunc } from '../../../utils/validator';
 
 //액션 타입
 const CHANGE = 'CHANGE';

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Form from 'react-bootstrap/Form';
+
 export const Container = styled.form`
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   height: 100vh;
@@ -16,17 +16,11 @@ export const Title = styled.div`
   font-size: ${({ theme }) => theme.fontSizes.title};
 `;
 
-export const Label = styled.label`
-  font-size: ${({ theme }) => theme.fontSizes.inputText};
-  color: ${({ theme }) => theme.palette.primary};
-  display: block;
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
-`;
-
 export const ItemContainer = styled.div`
   width: 80%;
 `;
-export const Region = styled.button`
+
+export const Button = styled.button`
   margin: 1rem 1rem 2rem 0rem;
   padding: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
@@ -45,8 +39,4 @@ export const Region = styled.button`
     background-color: ${({ theme }) => theme.palette.primary};
     color: ${({ theme }) => theme.palette.white};
   }
-`;
-
-export const Range = styled(Form.Range)`
-  color: red;
 `;

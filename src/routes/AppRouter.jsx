@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 
 // pages
 import SignUp from '~/pages/SignUp';
@@ -11,19 +11,57 @@ import CustomProducts from '~/pages/CustomProducts';
 import WishProducts from '~/pages/WishProducts';
 import Cart from '~/pages/Cart';
 import Layout from '../pages/Layout';
+import Entry from '../pages/Entry/Index';
+import PrivateRoute from './PrivateRoute';
 const AppRouter = () => {
   return (
     <div>
       <Routes>
         <Route element={<Layout />}>
-          <Route path='/' element={<AllProducts />} />
-          <Route path='custom-products' element={<CustomProducts />} />
-          <Route path='all-products' element={<AllProducts />} />
-          <Route path='wish-products' element={<WishProducts />} />
-          <Route path='cart' element={<Cart />} />
-          <Route path='my-page' element={<MyPage />} />
+          <Route
+            path='/'
+            element={
+              <PrivateRoute>
+                <AllProducts />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path='custom-products'
+            element={
+              <PrivateRoute>
+                <CustomProducts />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path='wish-products'
+            element={
+              <PrivateRoute>
+                <WishProducts />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path='cart'
+            element={
+              <PrivateRoute>
+                <Cart />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path='my-page'
+            element={
+              <PrivateRoute>
+                <MyPage />
+              </PrivateRoute>
+            }
+          />
         </Route>
 
+        <Route path='entry' element={<Entry />} />
         <Route path='sign-up' element={<SignUp />} />
         <Route path='sign-in' element={<SignIn />} />
       </Routes>
