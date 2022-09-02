@@ -1,8 +1,14 @@
 import styled from 'styled-components';
 import Form from 'react-bootstrap/Form';
-export const FormContainer = styled.form`
-  ${({ theme }) => theme.common.flexColumnStart};
+export const Container = styled.form`
   font-weight: ${({ theme }) => theme.fontWeight.bold};
+  height: 100vh;
+  ${({ theme }) => theme.common.flexCenter};
+`;
+
+export const Inner = styled.div`
+  ${({ theme }) => theme.common.flexColumnStart};
+  width: 100%;
 `;
 
 export const Title = styled.div`
