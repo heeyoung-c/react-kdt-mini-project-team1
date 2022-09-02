@@ -4,6 +4,7 @@ import { useGetCartsProductsQuery } from '~/api/productsApi';
 import Loading from '../../components/ui/Loading';
 import * as S from './style';
 import { useOrderCartProductMutation } from '~/api/productsApi';
+import EmptyProducts from '../../components/ui/EmptyProducts';
 
 const Cart = () => {
   const {
@@ -24,9 +25,6 @@ const Cart = () => {
   if (cartsProducts[0].id) {
     return (
       <>
-        <S.Container>
-          <S.Button onClick={orderCartProduct}>신청 하기</S.Button>
-        </S.Container>
         {cartsProducts.map(product => {
           const {
             id,
@@ -50,10 +48,13 @@ const Cart = () => {
             />
           );
         })}
+        <S.Container>
+          <S.Button onClick={orderCartProduct}>신청 하기</S.Button>
+        </S.Container>
       </>
     );
   } else {
-    return <p>장바구니 상품이 없습니다</p>;
+    return <EmptyProducts message={'장바구니에 담은 상품이 없습니다.'} />;
   }
 };
 
