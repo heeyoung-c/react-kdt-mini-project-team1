@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as S from './style';
 import Card from '~/components/ui/Card';
 import SearchBar from '~/components/ui/SearchBar';
@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form';
 import { useGetAllProductsQuery } from '~/api/productsApi';
 import Loading from '../../components/ui/Loading';
 import { sortFunc } from './sort';
+import { changeSearchProducts } from '~/store/slices/searchSlice';
 
 const AllProducts = () => {
   const [sortSelected, setSortSelected] = useState(null);
@@ -29,11 +30,21 @@ const AllProducts = () => {
   const { keyword, searchProducts } = useSelector(state => {
     return state;
   });
+  const [sort, setSort] = useState(null);
+  const dispatch = useDispatch();
 
-  if (isLoading) {
+  useEffect(() => {
+    searchProducts && setSort(sortFunc(sortSelected, searchProducts));
+  }, [sortSelected, searchProducts]);
+
+  useEffect(() => {
+    sort && dispatch(changeSearchProducts(sort));
+  }, [sort]);
+
+  if (isLoading || !products) {
     return <Loading />;
   }
-  if (isError || !products) {
+  if (isError) {
     return <div>오류 발생</div>;
   }
 
