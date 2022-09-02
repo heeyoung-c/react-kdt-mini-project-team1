@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
   // HOOKS
-  const [signIn, { data, isLoading, isError }] = useSignInMutation();
+  const [signIn] = useSignInMutation();
 
   const [userInput, setUserInput] = useState({
     email: '',
@@ -31,33 +31,35 @@ const SignIn = () => {
   };
 
   return (
-    <S.FormContainer>
-      <S.Title>로그인</S.Title>
-      <S.ItemContainer>
-        <S.Label>이메일</S.Label>
-        <S.Input
-          type='text'
-          placeholder='이메일'
-          name='email'
-          onChange={onChangeHandler}
-        />
-      </S.ItemContainer>
-      <S.ItemContainer>
-        <S.Label>비밀번호</S.Label>
-        <S.Input
-          type='password'
-          placeholder='비밀번호'
-          name='password'
-          onChange={onChangeHandler}
-        />
-      </S.ItemContainer>
+    <S.Container>
+      <S.Inner>
+        <S.Title>로그인</S.Title>
+        <S.ItemContainer>
+          <S.Label>이메일</S.Label>
+          <S.Input
+            type='text'
+            placeholder='이메일'
+            name='email'
+            onChange={onChangeHandler}
+          />
+        </S.ItemContainer>
+        <S.ItemContainer>
+          <S.Label>비밀번호</S.Label>
+          <S.Input
+            type='password'
+            placeholder='비밀번호'
+            name='password'
+            onChange={onChangeHandler}
+          />
+        </S.ItemContainer>
 
-      <TheButton
-        buttonName='로그인'
-        onClick={signInHandler}
-        formbutton='true'
-      />
-    </S.FormContainer>
+        <TheButton
+          buttonName='로그인'
+          onClick={signInHandler}
+          formbutton='true'
+        />
+      </S.Inner>
+    </S.Container>
   );
 };
 

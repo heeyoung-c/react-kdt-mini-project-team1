@@ -4,7 +4,6 @@ export const Container = styled.form`
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   height: 100vh;
   ${({ theme }) => theme.common.flexCenter};
-  /* margin-top: 40vh; */
 `;
 
 export const Inner = styled.div`
