@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import * as S from './style';
 import Button from '@mui/material/Button';
 
 import { Fragment } from 'react';
@@ -7,9 +7,12 @@ import { Fragment } from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-import { AiOutlineMenu } from 'react-icons/ai';
+// import { AiOutlineMenu } from 'react-icons/ai';
 
 import { useGetPersonQuery } from '~/api/customApi';
+
+// hamburder
+import { AiOutlineMenu } from 'react-icons/ai';
 export default function BasicMenu() {
   const { data: person, isLoading, isError } = useGetPersonQuery();
 
@@ -22,11 +25,20 @@ export default function BasicMenu() {
     setAnchorEl(null);
   };
   if (isLoading) {
-    return <div>로딩 중...</div>;
+    return (
+      <S.TheHeader>
+        <AiOutlineMenu
+          color='black'
+          size={15}
+          style={{ width: 64, position: 'relative', top: 3 }}
+        />
+      </S.TheHeader>
+    );
   }
   if (isError || !person) {
     return <div>오류 발생</div>;
   }
+
   return (
     <Fragment>
       <Button
@@ -41,7 +53,7 @@ export default function BasicMenu() {
           top: 3,
         }}
       >
-        <AiOutlineMenu size={15} />
+        <AiOutlineMenu size={15} color='black' />
       </Button>
       <Menu
         id='basic-menu'
