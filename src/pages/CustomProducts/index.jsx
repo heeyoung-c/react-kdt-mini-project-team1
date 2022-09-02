@@ -5,8 +5,9 @@ import { useGetProductsQuery } from '../../api/customApi';
 import Card from '../../components/ui/Card';
 // UserCard
 import UserCard from '../../components/ui/UserCard';
-// loading
+// // loading
 import Loading from '../../components/ui/Loading';
+
 const CustomProducts = () => {
   const { data: products, isLoading, isError } = useGetProductsQuery();
 
@@ -20,16 +21,28 @@ const CustomProducts = () => {
   return (
     <div>
       <UserCard />
-      {products.map((post, i) => (
-        <Card
-          key={post.id}
-          title={post.productName}
-          supporter={post.supporterName}
-          amount={post.supporterAmount
-            .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-        />
-      ))}
+      {products.map(item => {
+        const {
+          id,
+          bookmarkProduct,
+          supporterName,
+          productName,
+          supporterAmount,
+        } = item;
+
+        return (
+          <Card
+            key={id}
+            title={productName}
+            supporter={supporterName}
+            amount={supporterAmount
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+            bookmark={bookmarkProduct}
+            id={id}
+          />
+        );
+      })}
     </div>
   );
 };

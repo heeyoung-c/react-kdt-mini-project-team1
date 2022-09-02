@@ -9,7 +9,7 @@ import {
 import { useAddBookMarkMutation } from '~/api/productsApi';
 import { useDeleteBookMarkMutation } from '~/api/productsApi';
 import { useAddCartsProductsMutation } from '~/api/productsApi';
-import { useDeleteCartProductMutation } from '../../../api/productsApi';
+import { useDeleteCartProductMutation } from '~/api/productsApi';
 
 const Card = ({ id, title, supporter, amount, bookmark, renderType }) => {
   const [addBookMark] = useAddBookMarkMutation();
@@ -18,14 +18,9 @@ const Card = ({ id, title, supporter, amount, bookmark, renderType }) => {
   const [deleteCartProduct] = useDeleteCartProductMutation();
 
   const bookmarkHandler = ({ bookmark, id }) => {
-    console.log(bookmark);
-    console.log(id);
-
     if (bookmark) {
-      console.log('삭제');
       deleteBookMark(id);
     } else {
-      console.log('추가');
       addBookMark({
         productId: id,
       });
