@@ -1,6 +1,6 @@
 import React from 'react';
 // custom
-import { useGetProductsQuery } from '../../api/customApi';
+import { useGetCustomProductsQuery } from '../../api/productsApi';
 // Card
 import Card from '../../components/ui/Card';
 // UserCard
@@ -9,7 +9,7 @@ import UserCard from '../../components/ui/UserCard';
 import Loading from '../../components/ui/Loading';
 
 const CustomProducts = () => {
-  const { data: products, isLoading, isError } = useGetProductsQuery();
+  const { data: products, isLoading, isError } = useGetCustomProductsQuery();
 
   if (isLoading) {
     return <Loading />;

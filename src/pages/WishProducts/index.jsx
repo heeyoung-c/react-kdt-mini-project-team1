@@ -2,6 +2,7 @@ import React from 'react';
 import Card from '~/components/ui/Card';
 import { useGetWishProductsQuery } from '~/api/productsApi';
 import Loading from '../../components/ui/Loading';
+import EmptyProducts from '../../components/ui/EmptyProducts';
 
 const WishProducts = () => {
   const { data: wishProducts, isLoading, isError } = useGetWishProductsQuery();
@@ -34,7 +35,7 @@ const WishProducts = () => {
       </>
     );
   } else {
-    return <p>찜 목록이 없습니다</p>;
+    return <EmptyProducts message={'하트한 내역이 없습니다.'} />;
   }
 };
 export default WishProducts;

@@ -54,6 +54,7 @@ export const productsApi = createApi({
           ? [
               { type: 'Products', id: 'ALLLIST' },
               { type: 'Products', id: 'BOOKMARKLIST' },
+              { type: 'Products', id: 'CUSTOMLIST' },
             ]
           : [],
     }),
@@ -69,6 +70,7 @@ export const productsApi = createApi({
           ? [
               { type: 'Products', id: 'ALLLIST' },
               { type: 'Products', id: 'BOOKMARKLIST' },
+              { type: 'Products', id: 'CUSTOMLIST' },
             ]
           : [],
     }),
@@ -115,6 +117,18 @@ export const productsApi = createApi({
       invalidatesTags: result =>
         result ? [{ type: 'Products', id: 'CARTSLIST' }] : [],
     }),
+
+    // 맞춤형 상품 조회
+    getCustomProducts: builder.query({
+      query: () => ({
+        url: '/products/recommend',
+        method: 'GET',
+      }),
+      transformResponse: responseData => {
+        return responseData['data'];
+      },
+      providesTags: [{ type: 'Products', id: 'CUSTOMLIST' }],
+    }),
   }),
 });
 
@@ -127,4 +141,5 @@ export const {
   useAddCartsProductsMutation,
   useDeleteCartProductMutation,
   useOrderCartProductMutation,
+  useGetCustomProductsQuery,
 } = productsApi;

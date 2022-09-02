@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   ${({ theme }) => theme.common.flexCenter};
   font-family: 'NotoSansBold';
-  margin-bottom: 4rem;
+  margin-bottom: 10rem;
 `;
 
 export const Button = styled.div`

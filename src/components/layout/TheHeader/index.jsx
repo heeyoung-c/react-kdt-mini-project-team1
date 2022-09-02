@@ -3,15 +3,18 @@ import * as S from './style';
 import moment from 'moment';
 import 'moment/locale/ko';
 
-import { AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { BiArrowBack } from 'react-icons/bi';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import BasicMenu from '../../Modal/hamburger';
+import { useGetCartsProductsQuery } from '../../../api/productsApi';
+
 const TheHeader = () => {
   const nowTime = moment().format('HH:mm');
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const { data: cartProducts, isLoading, isError } = useGetCartsProductsQuery();
 
   return (
     <>
@@ -32,7 +35,10 @@ const TheHeader = () => {
             </S.ArrowBack>
           ) : null}
           <div onClick={() => navigate('/cart')}>{AiOutlineShoppingCart()}</div>
-
+          {/* cartProducts의 타입이 'string인 경우는 장바구니에 상품이 없는 경우 이기 때문에 이와 같이 코드를 작성하였습니다*/}
+          {typeof cartProducts === 'string' ? null : (
+            <S.CartLength>{cartProducts && cartProducts.length}</S.CartLength>
+          )}
           <BasicMenu />
         </S.Header_2>
       </S.TheHeader>

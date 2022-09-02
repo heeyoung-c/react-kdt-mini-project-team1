@@ -1,4 +1,3 @@
-import { style } from '@mui/system';
 import styled from 'styled-components';
 
 export const TheHeader = styled.header`
@@ -6,8 +5,8 @@ export const TheHeader = styled.header`
 `;
 
 export const Header_1 = styled.header`
-  ${({ theme }) => theme.common.flexEnd}
-  margin-bottom: 0.3rem
+  ${({ theme }) => theme.common.flexEnd};
+  margin-bottom: 0.3rem;
 `;
 
 export const Battery = styled.div`
@@ -43,6 +42,18 @@ export const ArrowBack = styled.div`
   left: 1rem;
 `;
 
+export const CartLength = styled.div`
+  position: absolute;
+  top: 2.8rem;
+  right: 5.5rem;
+  ${({ theme }) => theme.common.flexCenter};
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: ${({ theme }) => theme.palette.red};
+  color: ${({ theme }) => theme.palette.white};
+  font-size: ${({ theme }) => theme.fontSizes.smallParagraph};
+  border-radius: 1rem;
+`;
 export const FlexGrow = styled.div`
   flex-grow: 1;
 `;

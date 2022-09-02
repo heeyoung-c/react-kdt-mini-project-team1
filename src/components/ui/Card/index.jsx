@@ -16,6 +16,7 @@ const Card = ({ id, title, supporter, amount, bookmark, renderType }) => {
   const [deleteBookMark] = useDeleteBookMarkMutation();
   const [addCartsProducts] = useAddCartsProductsMutation();
   const [deleteCartProduct] = useDeleteCartProductMutation();
+  let res = {};
 
   const bookmarkHandler = ({ bookmark, id }) => {
     if (bookmark) {
@@ -24,6 +25,18 @@ const Card = ({ id, title, supporter, amount, bookmark, renderType }) => {
       addBookMark({
         productId: id,
       });
+    }
+  };
+
+  const addCartProductsClickHandler = async id => {
+    (res = await addCartsProducts({
+      productId: id,
+    })),
+      console.log(res); // 이 코드가 없으면 아래 코드 동작 X
+    if (res.data) {
+      alert('장바구니에 추가되었습니다');
+    } else {
+      alert('이미 등록된 상품입니다');
     }
   };
 
@@ -68,10 +81,7 @@ const Card = ({ id, title, supporter, amount, bookmark, renderType }) => {
               </S.Heart>
               <div
                 onClick={() => {
-                  addCartsProducts({
-                    productId: id,
-                  }),
-                    alert('장바구니에 추가되었습니다');
+                  addCartProductsClickHandler(id);
                 }}
               >
                 {AiOutlineShoppingCart()}
