@@ -35,6 +35,7 @@ export const Time = styled.div`
 export const Header_2 = styled.header`
   ${({ theme }) => theme.common.flexEnd}
   font-size: ${({ theme }) => theme.fontSizes.title};
+  width: 96%;
 `;
 
 export const ArrowBack = styled.div`

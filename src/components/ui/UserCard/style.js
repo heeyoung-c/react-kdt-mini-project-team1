@@ -12,7 +12,7 @@ export const Card = styled.div`
 `;
 
 export const H1 = styled.h1`
-  font-size: ${({ theme }) => theme.fontSizes.black};
+  font-size: ${({ theme }) => theme.fontSizes.subtitle};
   color: ${({ theme }) => theme.palette.gray};
   ${({ theme }) => theme.common.flexCenter};
 `;
