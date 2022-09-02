@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import Input from '../../components/ui/Input';
-import { validators } from '../../components/ui/Input/validator';
+import { validators } from '../../utils/validator';
 import TheButton from '../../components/ui/TheButton';
 import * as S from './style';
 import { useSignUpMutation } from '../../api/authApi';
+import { useNavigate } from 'react-router-dom';
 
 const regions = ['서울', '경기', '인천'];
 
 const SignUp = () => {
+  // HOOKS
   const [signUp] = useSignUpMutation();
   const [userInput, setUserInput] = useState({
     email: '',
@@ -16,9 +18,9 @@ const SignUp = () => {
     region: '',
     hopeAmount: 0,
   });
+  const navigate = useNavigate();
 
   // HANDLER
-
   const selectHandler = e => {
     e.preventDefault();
     console.log(e.currentTarget.value);
@@ -27,17 +29,28 @@ const SignUp = () => {
   };
 
   const onChangeHandler = e => {
-    console.log(e.currentTarget.value);
     const { name, value } = e.currentTarget;
     setUserInput(prev => ({ ...prev, [name]: value }));
   };
+  const signUpHandler = async () => {
+    //폼 유효성 검사 로직 통과하면 signUp 실행
+    const response = await signUp({ data: userInput });
 
-  const onSubmitHandler = () => {
-    signUp({ data: userInput });
-    console.log(userInput);
+    console.log(response);
+
+    if (!response.data.data.username) {
+      const errorMessage = response.data.data;
+      const signUpResult = response.data.responseMessage;
+      alert(signUpResult);
+      alert(errorMessage);
+    } else {
+      const username = response.data.data.username;
+
+      alert(`${username}님 회원가입을 축하합니다`);
+
+      navigate('/sign-in');
+    }
   };
-
-  //JSX
 
   return (
     <S.FormContainer>
@@ -102,7 +115,7 @@ const SignUp = () => {
       </S.ItemContainer>
       <TheButton
         buttonName='회원가입'
-        onClick={onSubmitHandler}
+        onClick={signUpHandler}
         formbutton='true'
       />
     </S.FormContainer>

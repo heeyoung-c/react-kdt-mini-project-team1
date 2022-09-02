@@ -1,41 +1,34 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import TheButton from '../../components/ui/TheButton';
 import * as S from './style';
 import { useSignInMutation } from '../../api/authApi';
-import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
-  const [signIn, { data: token, isLoading }] = useSignInMutation();
+  // HOOKS
+  const [signIn, { data, isLoading, isError }] = useSignInMutation();
 
   const [userInput, setUserInput] = useState({
     email: '',
     password: '',
   });
 
-  const [cookies, setCookie, removeCookie] = useCookies();
-
-  useEffect(() => {
-    setCookie('accessToken', token, { path: '/' });
-  }, [token]);
+  const navigate = useNavigate();
 
   // HANDLER
-
   const onChangeHandler = e => {
-    console.log(e.currentTarget.value);
     const { name, value } = e.currentTarget;
     setUserInput(prev => ({ ...prev, [name]: value }));
   };
 
-  const onSubmitHandler = async () => {
-    // const res = await signIn({ data: userInput });
-    // console.log(res);
-
-    signIn({ data: userInput });
-
-    console.log(userInput);
+  const signInHandler = async () => {
+    const response = await signIn({ data: userInput });
+    if (response.error) {
+      alert('이메일 주소와 비밀번호를 다시 확인해주세요');
+      return;
+    }
+    navigate('/');
   };
-
-  //JSX
 
   return (
     <S.FormContainer>
@@ -61,7 +54,7 @@ const SignIn = () => {
 
       <TheButton
         buttonName='로그인'
-        onClick={onSubmitHandler}
+        onClick={signInHandler}
         formbutton='true'
       />
     </S.FormContainer>

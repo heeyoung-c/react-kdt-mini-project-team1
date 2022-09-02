@@ -1,4 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { Cookies } from 'react-cookie';
+const cookies = new Cookies();
+
 const url = import.meta.env.VITE_SERVICE_URL;
 
 export const authApi = createApi({
@@ -22,9 +25,11 @@ export const authApi = createApi({
         body: data,
       }),
       transformResponse: response => {
-        console.log('RTK쿼리쪽', response.data.authorization);
+        const token = response.data.authorization;
 
-        return response.data.authorization;
+        cookies.set('accessToken', token, { path: '/' });
+
+        return token;
       },
     }),
   }),
