@@ -3,14 +3,12 @@ import styled from 'styled-components';
 export const Container = styled.form`
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   height: 100vh;
-  border: 2px solid red;
   ${({ theme }) => theme.common.flexCenter};
   /* margin-top: 40vh; */
 `;
 
 export const Inner = styled.div`
   ${({ theme }) => theme.common.flexColumnStart};
-  border: 2px solid black;
   width: 100%;
 `;
 
