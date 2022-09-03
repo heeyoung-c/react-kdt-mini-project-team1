@@ -32,6 +32,7 @@ const Cart = () => {
             supporterName,
             productName,
             supporterAmount,
+            supporterRegion,
           } = product;
 
           return (
@@ -44,6 +45,7 @@ const Cart = () => {
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
               bookmark={false}
               id={cartProductId}
+              supporterRegion={supporterRegion}
               renderType='Cart'
             />
           );

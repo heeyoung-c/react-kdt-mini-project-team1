@@ -17,7 +17,13 @@ const WishProducts = () => {
     return (
       <>
         {wishProducts.map(product => {
-          const { id, supporterName, productName, supporterAmount } = product;
+          const {
+            id,
+            supporterName,
+            productName,
+            supporterAmount,
+            supporterRegion,
+          } = product;
 
           return (
             <Card
@@ -29,6 +35,7 @@ const WishProducts = () => {
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
               bookmark={true}
               id={id}
+              supporterRegion={supporterRegion}
             />
           );
         })}

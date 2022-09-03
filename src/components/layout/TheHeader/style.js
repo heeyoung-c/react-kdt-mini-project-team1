@@ -45,7 +45,7 @@ export const ArrowBack = styled.div`
 export const CartLength = styled.div`
   position: absolute;
   top: 2.8rem;
-  right: 5.5rem;
+  right: 6.8rem;
   ${({ theme }) => theme.common.flexCenter};
   width: 1.5rem;
   height: 1.5rem;

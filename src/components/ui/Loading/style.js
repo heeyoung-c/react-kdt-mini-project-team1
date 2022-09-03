@@ -2,7 +2,7 @@ import styled from 'styled-components';
 // import { Spinner } from 'react-bootstrap';
 
 export const LoadingContainer = styled.div`
-  z-index: 2;
+  z-index: 3;
   ${({ theme }) => theme.common.flexCenter};
   position: fixed;
   top: 0;

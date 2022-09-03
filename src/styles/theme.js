@@ -14,6 +14,10 @@ const palette = {
   white: '#FFF',
   gray: '#808080',
   red: '#ff0f0f',
+
+  seoul: '#FFE9AE',
+  gyeonggi: '#C1EFFF',
+  incheon: '#C4DFAA',
 };
 
 // 레이아웃 관련
@@ -48,6 +52,7 @@ const common = {
 
 // font 관련
 const fontSizes = {
+  region: '12rem',
   title: '2rem',
   subtitle: '1.5rem',
 
