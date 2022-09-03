@@ -8,7 +8,8 @@ export const Container = styled.div`
 export const Card = styled.div`
   position: relative;
   width: 80%;
-  margin-bottom: 8rem;
+  margin-top: 2rem;
+  margin-bottom: 6rem;
   padding: 1rem;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   font-size: ${({ theme }) => theme.fontSizes.title};
@@ -25,8 +26,9 @@ export const Card = styled.div`
 
 export const CardRegion = styled.div`
   position: absolute;
-  top: -2rem;
+  top: 0rem;
   right: 0;
+  line-height: 12rem;
   font-size: ${({ theme }) => theme.fontSizes.region};
   color: rgba(255, 255, 255, 0.6);
 `;
