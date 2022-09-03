@@ -7,7 +7,7 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { BiArrowBack } from 'react-icons/bi';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import BasicMenu from '../../Modal/hamburger';
+import BasicMenu from '../../Modal';
 import { useGetCartsProductsQuery } from '../../../api/productsApi';
 
 const TheHeader = () => {

@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './style';
 import { useGetPersonQuery } from '~/api/customApi';
 // Modal
-import BasicMenu from '../../Modal/hamburger';
+import BasicMenu from '../../Modal';
 const UserCard = () => {
   const { data: person, isLoading, isError } = useGetPersonQuery();
   if (isLoading) {
