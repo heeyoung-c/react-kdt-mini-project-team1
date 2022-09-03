@@ -23,7 +23,7 @@ const UserCard = () => {
           <S.P>{person.username}님</S.P>의 정보를 바탕으로 분석한
         </S.H1>
         <br />
-        <S.H1>현재 신청 가능 대출</S.H1>
+        <S.H1>현재 신청 가능 금융상품</S.H1>
       </S.Card>
     </S.Container>
   );

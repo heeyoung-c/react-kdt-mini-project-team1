@@ -52,7 +52,7 @@ const AllProducts = () => {
     <div>
       <S.Div>
         <S.TitleDiv>
-          <S.Title>대출 검색</S.Title>
+          <S.Title>금융상품 검색</S.Title>
           <S.FlexGrow />
           <S.SelectDiv>
             <Form.Select size='sm' onChange={handleSortSelect}>
@@ -81,6 +81,7 @@ const AllProducts = () => {
             supporterName,
             productName,
             supporterAmount,
+            supporterRegion,
           } = product;
 
           return (
@@ -93,6 +94,7 @@ const AllProducts = () => {
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
               bookmark={bookmarkProduct}
               id={id}
+              supporterRegion={supporterRegion}
             />
           );
         })
