@@ -19,7 +19,7 @@ import { useNavigate } from 'react-router-dom';
 export default function BasicMenu() {
   const { data: person, isLoading, isError } = useGetPersonQuery();
   const navigate = useNavigate();
-  const [cookies, setCookie, removeCookie] = useCookies();
+  const [cookies, , removeCookie] = useCookies(['accessToken']);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = event => {
@@ -31,6 +31,7 @@ export default function BasicMenu() {
   const logoutHandler = () => {
     removeCookie('accessToken', { path: '/' });
     navigate('/entry');
+    navigate(0);
   };
 
   if (isLoading) {
