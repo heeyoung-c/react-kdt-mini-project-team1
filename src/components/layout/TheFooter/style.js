@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const TheFooter = styled.footer`
+  z-index: 2;
   ${({ theme }) => theme.common.flexAround};
   position: fixed;
   width: 100%;

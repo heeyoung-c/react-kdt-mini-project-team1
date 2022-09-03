@@ -28,6 +28,7 @@ const CustomProducts = () => {
           supporterName,
           productName,
           supporterAmount,
+          supporterRegion,
         } = item;
 
         return (
@@ -40,6 +41,7 @@ const CustomProducts = () => {
               .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
             bookmark={bookmarkProduct}
             id={id}
+            supporterRegion={supporterRegion}
           />
         );
       })}

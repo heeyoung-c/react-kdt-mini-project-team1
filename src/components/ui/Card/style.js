@@ -6,13 +6,29 @@ export const Container = styled.div`
 `;
 
 export const Card = styled.div`
+  position: relative;
   width: 80%;
   margin-bottom: 8rem;
   padding: 1rem;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   font-size: ${({ theme }) => theme.fontSizes.title};
   border-radius: 0.6rem;
-  background-color: ${({ theme }) => theme.palette.white};
+  background-color: ${({ theme, supporterRegion }) =>
+    supporterRegion === '서울'
+      ? theme.palette.seoul
+      : supporterRegion === '경기'
+      ? theme.palette.gyeonggi
+      : supporterRegion === '인천'
+      ? theme.palette.incheon
+      : theme.palette.white};
+`;
+
+export const CardRegion = styled.div`
+  position: absolute;
+  top: -2rem;
+  right: 0;
+  font-size: ${({ theme }) => theme.fontSizes.region};
+  color: rgba(255, 255, 255, 0.6);
 `;
 
 export const CardTop = styled.div`
@@ -20,9 +36,12 @@ export const CardTop = styled.div`
   margin: 1rem 1rem 0;
 `;
 
+export const CartTopInner = styled.div`
+  z-index: 1;
+`;
+
 export const CardBottom = styled.div`
   ${({ theme }) => theme.common.flexSpaceBetWeen};
-  color: ${({ theme }) => theme.palette.primary};
   margin-bottom: 1rem;
   padding-right: 1rem;
 `;
@@ -46,6 +65,7 @@ export const AmountTitle = styled.span`
 `;
 
 export const AmountDiv = styled.div`
+  z-index: 1;
   margin-top: 2rem;
 `;
 
@@ -56,6 +76,11 @@ export const ButtonDiv = styled.div`
 `;
 
 export const Heart = styled.div`
+  z-index: 1;
   color: ${({ theme, bookmark }) =>
     bookmark ? theme.palette.red : theme.palette.black};
+`;
+
+export const AddCart = styled.div`
+  z-index: 1;
 `;

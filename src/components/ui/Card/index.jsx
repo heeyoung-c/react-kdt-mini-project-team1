@@ -11,7 +11,15 @@ import { useDeleteBookMarkMutation } from '~/api/productsApi';
 import { useAddCartsProductsMutation } from '~/api/productsApi';
 import { useDeleteCartProductMutation } from '~/api/productsApi';
 
-const Card = ({ id, title, supporter, amount, bookmark, renderType }) => {
+const Card = ({
+  id,
+  title,
+  supporter,
+  amount,
+  bookmark,
+  supporterRegion,
+  renderType,
+}) => {
   const [addBookMark] = useAddBookMarkMutation();
   const [deleteBookMark] = useDeleteBookMarkMutation();
   const [addCartsProducts] = useAddCartsProductsMutation();
@@ -42,12 +50,13 @@ const Card = ({ id, title, supporter, amount, bookmark, renderType }) => {
 
   return (
     <S.Container>
-      <S.Card>
+      <S.Card supporterRegion={supporterRegion}>
+        <S.CardRegion>{supporterRegion}</S.CardRegion>
         <S.CardTop>
-          <div>
+          <S.CartTopInner>
             <S.Title>{title}</S.Title>
             <S.SubTitle>{supporter}</S.SubTitle>
-          </div>
+          </S.CartTopInner>
         </S.CardTop>
         <S.CardBottom>
           <S.FlexGrow />
@@ -79,13 +88,13 @@ const Card = ({ id, title, supporter, amount, bookmark, renderType }) => {
               >
                 {bookmark ? AiFillHeart() : AiOutlineHeart()}
               </S.Heart>
-              <div
+              <S.AddCart
                 onClick={() => {
                   addCartProductsClickHandler(id);
                 }}
               >
                 {AiOutlineShoppingCart()}
-              </div>
+              </S.AddCart>
             </>
           )}
         </S.ButtonDiv>
