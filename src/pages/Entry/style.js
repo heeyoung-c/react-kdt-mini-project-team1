@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.form`
+  font-family: 'NotoSansRegular';
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   height: 100vh;
   ${({ theme }) => theme.common.flexCenter};
@@ -12,8 +13,25 @@ export const Inner = styled.div`
 `;
 
 export const Title = styled.div`
+  margin-bottom: 2rem;
+  font-family: 'NotoSansMedium';
+  font-size: ${({ theme }) => theme.fontSizes.entryTitle};
+`;
+
+export const SubTitle = styled.div`
+  font-size: ${({ theme }) => theme.fontSizes.subtitle};
+`;
+
+export const Content = styled.div`
+  ${({ theme }) => theme.common.flexCenter};
+  width: 100%;
+  margin-bottom: 2rem;
+  font-size: ${({ theme }) => theme.fontSizes.subtitle};
+`;
+
+export const P = styled.div`
+  margin: 0 0.2rem;
   color: ${({ theme }) => theme.palette.primary};
-  font-size: ${({ theme }) => theme.fontSizes.title};
 `;
 
 export const ItemContainer = styled.div`
