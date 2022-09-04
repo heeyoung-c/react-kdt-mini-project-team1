@@ -85,8 +85,8 @@ const SignUp = () => {
           placeholder='사용자명을 입력해주세요'
           name='username'
           labelName='사용자명'
-          errorMessage='사용자명은 5~10자로 입력해주세요'
-          validators={[validators.MIN_LENGTH(5), validators.MAX_LENGTH(10)]}
+          errorMessage='사용자명은 2~5자로 입력해주세요'
+          validators={[validators.MIN_LENGTH(2), validators.MAX_LENGTH(5)]}
           setUserInput={setUserInput}
           setFormState={setFormState}
         />
