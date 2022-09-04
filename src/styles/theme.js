@@ -1,6 +1,6 @@
 // 색상 관련
 const palette = {
-  primary: '#3F72AF',
+  primary: '#1363DF',
   primaryLight: '#DBE2EF',
   primaryDark: '#112D4E',
 
@@ -53,6 +53,7 @@ const common = {
 // font 관련
 const fontSizes = {
   region: '12rem',
+  entryTitle: '4rem',
   title: '2rem',
   subtitle: '1.5rem',
 
