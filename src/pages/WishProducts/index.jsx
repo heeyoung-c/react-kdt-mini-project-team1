@@ -3,6 +3,7 @@ import Card from '~/components/ui/Card';
 import { useGetWishProductsQuery } from '~/api/productsApi';
 import Loading from '../../components/ui/Loading';
 import EmptyProducts from '../../components/ui/EmptyProducts';
+import * as S from './style';
 
 const WishProducts = () => {
   const { data: wishProducts, isLoading, isError } = useGetWishProductsQuery();
@@ -16,6 +17,7 @@ const WishProducts = () => {
   if (wishProducts[0].id) {
     return (
       <>
+        <S.Title>찜 목록</S.Title>
         {wishProducts.map(product => {
           const {
             id,

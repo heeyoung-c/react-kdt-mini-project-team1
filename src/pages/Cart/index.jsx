@@ -25,6 +25,7 @@ const Cart = () => {
   if (cartsProducts[0].id) {
     return (
       <>
+        <S.Title>장바구니</S.Title>
         {cartsProducts.map(product => {
           const {
             id,
