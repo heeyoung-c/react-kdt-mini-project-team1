@@ -2,7 +2,6 @@ const MIN_LENGTH = 'MIN_LENGTH';
 const MAX_LENGTH = 'MAX_LENGTH';
 const EMAIL = 'EMAIL';
 
-//enum 가능
 const emailRule =
   /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 

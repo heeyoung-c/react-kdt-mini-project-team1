@@ -5,6 +5,7 @@ import TheButton from '../../components/ui/TheButton';
 import * as S from './style';
 import { useSignUpMutation } from '../../api/authApi';
 import { useNavigate } from 'react-router-dom';
+import useForm from '../../hooks/useForm';
 
 const regions = ['서울', '경기', '인천'];
 
@@ -19,6 +20,9 @@ const SignUp = () => {
     hopeAmount: 0,
   });
   const navigate = useNavigate();
+  const [setFormState, isFormValid] = useForm();
+
+  console.log('회원가입의 isFormValid', isFormValid);
 
   // HANDLER
   const selectHandler = e => {
@@ -26,17 +30,17 @@ const SignUp = () => {
 
     const { name, value } = e.currentTarget;
     setUserInput(prev => ({ ...prev, [name]: value }));
+    setFormState(prev => ({ ...prev, [name]: value }));
   };
 
   const onChangeHandler = e => {
     const { name, value } = e.currentTarget;
     setUserInput(prev => ({ ...prev, [name]: value }));
+    setFormState(prev => ({ ...prev, [name]: value }));
   };
   const signUpHandler = async () => {
     //폼 유효성 검사 로직 통과하면 signUp 실행
     const response = await signUp({ data: userInput });
-
-    console.log(response);
 
     if (!response.data.data.username) {
       const errorMessage = response.data.data;
@@ -64,6 +68,7 @@ const SignUp = () => {
           errorMessage='이메일 양식을 확인해주세요'
           validators={[validators.EMAIL()]}
           setUserInput={setUserInput}
+          setFormState={setFormState}
         />
         <Input
           type='password'
@@ -73,15 +78,17 @@ const SignUp = () => {
           errorMessage='비밀번호는 8~15자로 입력해주세요'
           validators={[validators.MIN_LENGTH(8), validators.MAX_LENGTH(15)]}
           setUserInput={setUserInput}
+          setFormState={setFormState}
         />
         <Input
           type='text'
           placeholder='사용자명을 입력해주세요'
           name='username'
           labelName='사용자명'
-          errorMessage='사용자명은 5~12자로 입력해주세요'
-          validators={[validators.MIN_LENGTH(5), validators.MAX_LENGTH(12)]}
+          errorMessage='사용자명은 5~10자로 입력해주세요'
+          validators={[validators.MIN_LENGTH(5), validators.MAX_LENGTH(10)]}
           setUserInput={setUserInput}
+          setFormState={setFormState}
         />
 
         <S.ItemContainer>
@@ -118,6 +125,7 @@ const SignUp = () => {
           buttonName='회원가입'
           onClick={signUpHandler}
           formbutton='true'
+          disabled={!isFormValid}
         />
       </S.Inner>
     </S.Container>
