@@ -24,7 +24,6 @@ const inputReducer = (state, action) => {
   }
 };
 
-// 컴포넌트
 const Input = ({
   type,
   placeholder,
@@ -33,14 +32,13 @@ const Input = ({
   errorMessage,
   validators,
   setUserInput,
+  setFormState,
 }) => {
   const [inputState, dispatch] = useReducer(inputReducer, {
     value: '',
     isValid: false,
     isBlur: false,
   });
-
-  // 핸들러
 
   const onChangeHandler = e => {
     dispatch({
@@ -51,6 +49,11 @@ const Input = ({
 
     const { name, value } = e.currentTarget;
     setUserInput(prev => ({ ...prev, [name]: value }));
+
+    setFormState(prev => ({
+      ...prev,
+      [name]: validationFunc(value, validators),
+    }));
   };
 
   const onBlurHandler = () => {

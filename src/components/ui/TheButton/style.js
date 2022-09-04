@@ -12,7 +12,7 @@ export const TheButton = styled(Button)`
   &:hover {
     background-color: ${({ theme }) => theme.palette.primaryDark};
   }
-  &:focus {
-    background-color: ${({ theme }) => theme.palette.primary};
+  &:disabled {
+    background-color: ${({ theme }) => theme.palette.gray};
   }
 `;
