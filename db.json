@@ -1,0 +1,32 @@
+{
+  "products": [
+    {
+      "productName": "국민지원금",
+      "productContent": "국민지원금이다",
+      "supporterName": "하나재단",
+      "supporterRegion": "서울",
+      "supporterAmount": 3000000
+    },
+    {
+      "productName": "경영위기지원금",
+      "productContent": "코로나19로 피해가 누적된 소상공인에게 자금 지원",
+      "supporterName": "정부",
+      "supporterRegion": "서울",
+      "supporterAmount": 1000000
+    },
+    {
+      "productName": "손실보전금",
+      "productContent": "현재 영업 중이며 매출액이 감소한 소상공인에게 자금지원",
+      "supporterName": "정부",
+      "supporterRegion": "서울",
+      "supporterAmount": 1500000
+    },
+    {
+      "productName": "청년보전금",
+      "productContent": "현재 영업 중이며 매출액이 감소한 소상공인에게 자금지원!!!!!",
+      "supporterName": "지구",
+      "supporterRegion": "수원",
+      "supporterAmount": 3500000
+    }
+  ]
+}

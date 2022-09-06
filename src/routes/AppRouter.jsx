@@ -1,21 +1,69 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 
 // pages
+import SignUp from '~/pages/SignUp';
+import SignIn from '~/pages/SignIn';
+import MyPage from '~/pages/MyPage';
+
 import AllProducts from '~/pages/AllProducts';
 import CustomProducts from '~/pages/CustomProducts';
 import WishProducts from '~/pages/WishProducts';
-
+import Cart from '~/pages/Cart';
+import Layout from '../pages/Layout';
+import Entry from '../pages/Entry/Index';
+import PrivateRoute from './PrivateRoute';
 const AppRouter = () => {
   return (
     <div>
       <Routes>
-        {/* 기본으로 보여줄 페이지는 뭐로 할까요?*/}
-        <Route path='/' element={<AllProducts />} />
+        <Route element={<Layout />}>
+          <Route
+            path='/'
+            element={
+              <PrivateRoute>
+                <AllProducts />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path='custom-products'
+            element={
+              <PrivateRoute>
+                <CustomProducts />
+              </PrivateRoute>
+            }
+          />
 
-        <Route path='custom-products' element={<CustomProducts />} />
-        <Route path='all-products' element={<AllProducts />} />
-        <Route path='wish-products' element={<WishProducts />} />
+          <Route
+            path='wish-products'
+            element={
+              <PrivateRoute>
+                <WishProducts />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path='cart'
+            element={
+              <PrivateRoute>
+                <Cart />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path='my-page'
+            element={
+              <PrivateRoute>
+                <MyPage />
+              </PrivateRoute>
+            }
+          />
+        </Route>
+
+        <Route path='entry' element={<Entry />} />
+        <Route path='sign-up' element={<SignUp />} />
+        <Route path='sign-in' element={<SignIn />} />
       </Routes>
     </div>
   );
