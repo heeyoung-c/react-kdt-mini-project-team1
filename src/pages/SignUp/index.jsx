@@ -21,12 +21,13 @@ const SignUp = () => {
   });
   const navigate = useNavigate();
   const [setFormState, isFormValid] = useForm();
+  console.log('유저인풋: ', userInput);
 
   console.log('회원가입의 isFormValid', isFormValid);
 
   // HANDLER
-  const selectHandler = e => {
-    e.preventDefault();
+  const onClickHandler = e => {
+    console.log('e.currentTarget', e.currentTarget);
 
     const { name, value } = e.currentTarget;
     setUserInput(prev => ({ ...prev, [name]: value }));
@@ -93,16 +94,20 @@ const SignUp = () => {
 
         <S.ItemContainer>
           <S.Label>지역을 선택해주세요</S.Label>
-          {regions.map(region => (
-            <S.Region
-              onClick={selectHandler}
-              key={region}
-              name='region'
-              value={region}
-            >
-              {region}
-            </S.Region>
-          ))}
+          <S.RegionContainer>
+            {regions.map(region => (
+              <div kye={region}>
+                <input
+                  type='radio'
+                  name='region'
+                  value={region}
+                  id={region}
+                  onClick={onClickHandler}
+                />
+                <label htmlFor={region}>{region}</label>
+              </div>
+            ))}
+          </S.RegionContainer>
         </S.ItemContainer>
         <S.ItemContainer>
           <S.Label>희망 금액을 선택해주세요</S.Label>
